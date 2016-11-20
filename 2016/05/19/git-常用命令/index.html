@@ -8,29 +8,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="记录下工作中常用到的Git命令
 常规操作
-clone仓库：
-  clone &amp;#123;gitUrl&amp;#125; &amp;#123;localFileName&amp;#125;```123- checkout 分支：	```git checkout &amp;#123;branchName&amp;#125;
-
-拉取代码：pull``` = ```git fetch``` + ```git merge```1- 添加修改：`">
+clone仓库：git clone {gitUrl} {localFileName}
+checkout 分支：git checkout {branchName}
+拉取代码：git pull = git fetch + git merge
+添加修改：git add .
+添加已删除的文件列表：git add -u .
+提交代码到本地: git commit -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 常用命令">
 <meta property="og:url" content="http://diule.site/2016/05/19/git-常用命令/index.html">
 <meta property="og:site_name" content="丢了">
 <meta property="og:description" content="记录下工作中常用到的Git命令
 常规操作
-clone仓库：
-  clone &amp;#123;gitUrl&amp;#125; &amp;#123;localFileName&amp;#125;```123- checkout 分支：	```git checkout &amp;#123;branchName&amp;#125;
-
-拉取代码：pull``` = ```git fetch``` + ```git merge```1- 添加修改：`">
-<meta property="og:updated_time" content="2016-11-20T13:32:12.516Z">
+clone仓库：git clone {gitUrl} {localFileName}
+checkout 分支：git checkout {branchName}
+拉取代码：git pull = git fetch + git merge
+添加修改：git add .
+添加已删除的文件列表：git add -u .
+提交代码到本地: git commit -">
+<meta property="og:updated_time" content="2016-11-20T13:33:38.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 常用命令">
 <meta name="twitter:description" content="记录下工作中常用到的Git命令
 常规操作
-clone仓库：
-  clone &amp;#123;gitUrl&amp;#125; &amp;#123;localFileName&amp;#125;```123- checkout 分支：	```git checkout &amp;#123;branchName&amp;#125;
-
-拉取代码：pull``` = ```git fetch``` + ```git merge```1- 添加修改：`">
+clone仓库：git clone {gitUrl} {localFileName}
+checkout 分支：git checkout {branchName}
+拉取代码：git pull = git fetch + git merge
+添加修改：git add .
+添加已删除的文件列表：git add -u .
+提交代码到本地: git commit -">
   
     <link rel="alternative" href="/atom.xml" title="丢了" type="application/atom+xml">
   
@@ -95,7 +101,7 @@ clone仓库：
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -244,26 +250,35 @@ clone仓库：
       
         <p>记录下工作中常用到的Git命令</p>
 <h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><ul>
-<li><p>clone仓库：</p>
-  <figure class="highlight plain"><figcaption><span>clone &#123;gitUrl&#125; &#123;localFileName&#125;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- checkout 分支：</span><br><span class="line">	```git checkout &#123;branchName&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>拉取代码：<figure class="highlight plain"><figcaption><span>pull``` = ```git fetch``` + ```git merge```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 添加修改：```git add .</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>添加已删除的文件列表：<figure class="highlight plain"><figcaption><span>add -u .```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 提交代码到本地: ```git commit -m &quot;&#123;commitInfo&#125;&quot;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>提交代码到远程：<figure class="highlight plain"><figcaption><span>push```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 回退/回退操作</span><br><span class="line"></span><br><span class="line">- 回退已push文件中的错误：```git revert HEAD^</span><br></pre></td></tr></table></figure></p>
-<ul>
+<li>clone仓库：git clone {gitUrl} {localFileName}</li>
+<li>checkout 分支：git checkout {branchName}</li>
+<li>拉取代码：git pull = git fetch + git merge</li>
+<li>添加修改：git add .</li>
+<li>添加已删除的文件列表：git add -u .</li>
+<li>提交代码到本地: git commit -m “{commitInfo}”</li>
+<li>提交代码到远程：git push</li>
+</ul>
+<h3 id="回退-回退操作"><a href="#回退-回退操作" class="headerlink" title="回退/回退操作"></a>回退/回退操作</h3><ul>
+<li>回退已push文件中的错误：git revert HEAD^<ul>
 <li>git revert 是生成一个新的提交来撤销某次提交，此次提交之前的commit都会被保留，常用于发布系统回滚</li>
 </ul>
 </li>
-<li><p>回退未push文件中的错误：<figure class="highlight plain"><figcaption><span>reset HEAD^```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	- git reset 是回到某次提交，提交及之前的commit都会被保留，但是此次之后的修改都会被退回到暂存区。</span><br><span class="line">- 修复已修改文件的文件：```git checkout --</span><br></pre></td></tr></table></figure></p>
+<li>回退未push文件中的错误：git reset HEAD^<ul>
+<li>git reset 是回到某次提交，提交及之前的commit都会被保留，但是此次之后的修改都会被退回到暂存区。</li>
+</ul>
 </li>
-<li><p>删除untracked 文件/文件夹: <figure class="highlight plain"><figcaption><span>clean -f -d```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 非常规操作：</span><br><span class="line">- 手工合并主干，常用于解决冲突：```git pull origin master</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>按commit合并：<figure class="highlight plain"><figcaption><span>cherry-pick &#123;&#123;commit&#125;&#125;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 其他：</span><br><span class="line">- 查看当前仓库信息：```git remote -v</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>待push状态，查看diff和changeList: <figure class="highlight plain"><figcaption><span>format-patch -1```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 查看log，无法查看已经删除了的commit记录:  git log ----pretty=oneline</span><br><span class="line">- 查看log，包含所有分支的所有操作记录：```git reflog</span><br></pre></td></tr></table></figure></p>
-</li>
+<li>修复已修改文件的文件：git checkout –</li>
+<li>删除untracked 文件/文件夹: git clean -f -d</li>
+</ul>
+<h3 id="非常规操作："><a href="#非常规操作：" class="headerlink" title="非常规操作："></a>非常规操作：</h3><ul>
+<li>手工合并主干，常用于解决冲突：git pull origin master</li>
+<li>按commit合并：git cherry-pick </li>
+</ul>
+<h3 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h3><ul>
+<li>查看当前仓库信息：git remote -v</li>
+<li>待push状态，查看diff和changeList: git format-patch -1</li>
+<li>查看log，无法查看已经删除了的commit记录:  git log —-pretty=oneline</li>
+<li>查看log，包含所有分支的所有操作记录：git reflog</li>
 </ul>
 
       
