@@ -26,7 +26,7 @@ checkout 分支：git checkout {branchName}
 添加修改：git add .
 添加已删除的文件列表：git add -u .
 提交代码到本地: git commit -">
-<meta property="og:updated_time" content="2016-11-20T13:40:34.322Z">
+<meta property="og:updated_time" content="2016-11-20T13:41:52.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 常用命令">
 <meta name="twitter:description" content="记录下工作中常用到的Git命令
@@ -101,7 +101,7 @@ checkout 分支：git checkout {branchName}
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -250,34 +250,34 @@ checkout 分支：git checkout {branchName}
       
         <p>记录下工作中常用到的Git命令</p>
 <h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><ul>
-<li>clone仓库：git clone {gitUrl} {localFileName}</li>
-<li>checkout 分支：git checkout {branchName}</li>
-<li>拉取代码：git pull = git fetch + git merge</li>
-<li>添加修改：git add .</li>
-<li>添加已删除的文件列表：git add -u .</li>
-<li>提交代码到本地: git commit -m “{commitInfo}”</li>
-<li>提交代码到远程：git push</li>
+<li>clone仓库：<code>git clone {gitUrl} {localFileName}</code></li>
+<li>checkout 分支：<code>git checkout {branchName}</code></li>
+<li>拉取代码：<code>git pull = git fetch + git merge</code></li>
+<li>添加修改：<code>git add .</code></li>
+<li>添加已删除的文件列表：<code>git add -u .</code></li>
+<li>提交代码到本地: <code>git commit -m &quot;{commitInfo}&quot;</code></li>
+<li>提交代码到远程：<code>git push</code></li>
 </ul>
 <h3 id="回退-回退操作"><a href="#回退-回退操作" class="headerlink" title="回退/回退操作"></a>回退/回退操作</h3><ul>
-<li>回退已push文件中的错误：git revert HEAD^<ul>
+<li>回退已push文件中的错误：<code>git revert HEAD^</code><ul>
 <li>git revert 是生成一个新的提交来撤销某次提交，此次提交之前的commit都会被保留，常用于发布系统回滚</li>
 </ul>
 </li>
-<li>回退未push文件中的错误：git reset HEAD^<ul>
+<li>回退未push文件中的错误：<code>git reset HEAD^</code><ul>
 <li>git reset 是回到某次提交，提交及之前的commit都会被保留，但是此次之后的修改都会被退回到暂存区。</li>
 </ul>
 </li>
-<li>修复已修改文件的文件：git checkout –</li>
-<li>删除untracked 文件/文件夹: git clean -f -d</li>
+<li>修复已修改文件的文件：<code>git checkout --</code></li>
+<li>删除untracked 文件/文件夹: <code>git clean -f -d</code></li>
 </ul>
 <h3 id="非常规操作："><a href="#非常规操作：" class="headerlink" title="非常规操作："></a>非常规操作：</h3><ul>
-<li>手工合并主干，常用于解决冲突：git pull origin master</li>
-<li>按commit合并：git cherry-pick </li>
+<li>手工合并主干，<code>常用于解决冲突：git pull origin master</code></li>
+<li>按commit合并：<code>git cherry-pick </code></li>
 </ul>
 <h3 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h3><ul>
-<li>查看当前仓库信息：git remote -v</li>
-<li>待push状态，查看diff和changeList: git format-patch -1</li>
-<li>查看log，无法查看已经删除了的commit记录:  git log –pretty=oneline</li>
+<li>查看当前仓库信息：<code>git remote -v</code></li>
+<li>待push状态，查看diff和changeList: <code>git format-patch -1</code></li>
+<li>查看log，无法查看已经删除了的commit记录:  <code>git log --pretty=oneline</code></li>
 <li>查看log，包含所有分支的所有操作记录：<code>git reflog</code></li>
 </ul>
 
