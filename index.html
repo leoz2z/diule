@@ -95,7 +95,7 @@ ga('send', 'pageview');
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -207,11 +207,11 @@ ga('send', 'pageview');
 
       <div class="body-wrap">
   
-    <article id="post-wechat-good-bad" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-wexin-tabs" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/18/wechat-good-bad/" class="article-date">
-  	<time datetime="2016-12-18T08:28:24.000Z" itemprop="datePublished">2016-12-18</time>
+      <a href="/2016/12/18/wexin-tabs/" class="article-date">
+  	<time datetime="2016-12-18T07:52:46.000Z" itemprop="datePublished">2016-12-18</time>
 </a>
     </div>
   
@@ -224,7 +224,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/18/wechat-good-bad/">wechat-good-bad</a>
+      <a class="article-title" href="/2016/12/18/wexin-tabs/">六不准的微信小程序之如何创建一个Tabs</a>
     </h1>
   
 
@@ -233,7 +233,29 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="最近用微信小程序做了一个网络图片文件夹，里面用了一些官方提供的接口和组件，自己也实现了一些。"><a href="#最近用微信小程序做了一个网络图片文件夹，里面用了一些官方提供的接口和组件，自己也实现了一些。" class="headerlink" title="最近用微信小程序做了一个网络图片文件夹，里面用了一些官方提供的接口和组件，自己也实现了一些。"></a>最近用微信小程序做了一个网络图片文件夹，里面用了一些官方提供的接口和组件，自己也实现了一些。</h3><p>本文将介绍移动端布局中比较常用的Tabs布局是如何实现的。</p>
+<h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><ul>
+<li>图片文件夹界面Tabs作为布局的导航。</li>
+<li>每个Tab选中，其内容区块将展示该Tab的内容。</li>
+<li>Tab选中有明显的高亮展示。</li>
+</ul>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><ul>
+<li>总体：navigator组件 结合 获取url参数 来实现该功能。</li>
+<li>wxml布局：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"tabs"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">navigator</span> <span class="attr">redirect</span> <span class="attr">class</span>=<span class="string">"tab &#123;&#123;currentType == 'latest'  ? 'tab-selected' : ''&#125;&#125;"</span> <span class="attr">url</span>=<span class="string">"gif?type=latest"</span> <span class="attr">hover-class</span>=<span class="string">"tab-hover"</span>&gt;</span>最新<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">navigator</span> <span class="attr">redirect</span> <span class="attr">class</span>=<span class="string">"tab &#123;&#123;currentType == 'gif'  ? 'tab-selected' : ''&#125;&#125;"</span> <span class="attr">url</span>=<span class="string">"gif?type=gif"</span> <span class="attr">hover-class</span>=<span class="string">"tab-hover"</span>&gt;</span>动图<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">navigator</span> <span class="attr">redirect</span> <span class="attr">class</span>=<span class="string">"tab &#123;&#123;currentType == 'static'  ? 'tab-selected' : ''&#125;&#125;"</span> <span class="attr">url</span>=<span class="string">"gif?type=static"</span> <span class="attr">hover-class</span>=<span class="string">"tab-hover"</span>&gt;</span>趣图<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>wxss样式:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.tabs</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tabs</span> <span class="selector-class">.tab</span> &#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">84</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">84</span>rpx;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tabs</span> <span class="selector-class">.tab-hover</span>,</span><br><span class="line"><span class="selector-class">.tabs</span> <span class="selector-class">.tab-selected</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#1aad19</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">2px</span> solid <span class="number">#1aad19</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>javascript: </li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取url中type参数，若没有该参数，默认显示最新tab</span></span><br><span class="line">onLoad: <span class="function"><span class="keyword">function</span>(<span class="params">option</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      currentType: option.type ?  option.type : <span class="string">'latest'</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="页面效果"><a href="#页面效果" class="headerlink" title="页面效果"></a>页面效果</h3><ul>
+<li><img src="http://ohgp0qsci.bkt.clouddn.com/wechat-tabs.gif" alt="wechat-tabs"></li>
+</ul>
+
       
     </div>
     
@@ -263,10 +285,10 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-wexin-tabs" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-wechat-good-bad" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/15/wexin-tabs/" class="article-date">
+      <a href="/2016/12/15/wechat-good-bad/" class="article-date">
   	<time datetime="2016-12-15T11:51:11.000Z" itemprop="datePublished">2016-12-15</time>
 </a>
     </div>
@@ -280,7 +302,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/15/wexin-tabs/">微信小程序和你有多大关系</a>
+      <a class="article-title" href="/2016/12/15/wechat-good-bad/">微信小程序和你有多大关系</a>
     </h1>
   
 
@@ -684,6 +706,77 @@ ga('send', 'pageview');
 
 
   
+    <article id="post-wechat-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/23/wechat-2/" class="article-date">
+  	<time datetime="2016-11-23T14:23:09.000Z" itemprop="datePublished">2016-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/23/wechat-2/">六不准的微信小程序开发指南二</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。"><a href="#上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。" class="headerlink" title="上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。"></a>上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。</h3><h4 id="微信小程序API源码下载"><a href="#微信小程序API源码下载" class="headerlink" title="微信小程序API源码下载"></a>微信小程序API源码下载</h4><ul>
+<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/demo.html?t=20161122" target="_blank" rel="external">下载页面</a></li>
+<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/demo/demo.zip?t=20161122" target="_blank" rel="external">直接下载(可能失效)</a></li>
+</ul>
+<h3 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h3><ul>
+<li>解压zip包到你的工程目录，例如wechatTest</li>
+<li>打开微信web开发者工具，创建新项目。<ul>
+<li>输入AppID，若有</li>
+<li>输入项目名称，例如wechatTest</li>
+<li>项目目录，选择你的工程目录，例如wechatTest文件夹</li>
+<li>注意：请不要勾选 <code>在当前目录中创建 quick start 项目</code> 选项<br><img src="http://ohgp0qsci.bkt.clouddn.com/wechat1.png" alt="创建项目"></li>
+</ul>
+</li>
+<li>其实，到这一步，就已经可以看到微信小程序的组件和接口了<br><img src="http://ohgp0qsci.bkt.clouddn.com/wechat2.png?imageView/2/w/700" alt="组件接口界面"></li>
+</ul>
+<h4 id="下一章主要内容：模仿一个流行的应用做个实例"><a href="#下一章主要内容：模仿一个流行的应用做个实例" class="headerlink" title="下一章主要内容：模仿一个流行的应用做个实例"></a>下一章主要内容：模仿一个流行的应用做个实例</h4>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-wechat-1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -734,77 +827,6 @@ ga('send', 'pageview');
 </li>
 </ul>
 <h4 id="下一章主要内容：官方的实例如何在本地运行起来"><a href="#下一章主要内容：官方的实例如何在本地运行起来" class="headerlink" title="下一章主要内容：官方的实例如何在本地运行起来"></a>下一章主要内容：官方的实例如何在本地运行起来</h4>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-wechat-2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/23/wechat-2/" class="article-date">
-  	<time datetime="2016-11-23T14:23:09.000Z" itemprop="datePublished">2016-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/23/wechat-2/">六不准的微信小程序开发指南二</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。"><a href="#上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。" class="headerlink" title="上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。"></a>上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。</h3><h4 id="微信小程序API源码下载"><a href="#微信小程序API源码下载" class="headerlink" title="微信小程序API源码下载"></a>微信小程序API源码下载</h4><ul>
-<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/demo.html?t=20161122" target="_blank" rel="external">下载页面</a></li>
-<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/demo/demo.zip?t=20161122" target="_blank" rel="external">直接下载(可能失效)</a></li>
-</ul>
-<h3 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h3><ul>
-<li>解压zip包到你的工程目录，例如wechatTest</li>
-<li>打开微信web开发者工具，创建新项目。<ul>
-<li>输入AppID，若有</li>
-<li>输入项目名称，例如wechatTest</li>
-<li>项目目录，选择你的工程目录，例如wechatTest文件夹</li>
-<li>注意：请不要勾选 <code>在当前目录中创建 quick start 项目</code> 选项<br><img src="http://ohgp0qsci.bkt.clouddn.com/wechat1.png" alt="创建项目"></li>
-</ul>
-</li>
-<li>其实，到这一步，就已经可以看到微信小程序的组件和接口了<br><img src="http://ohgp0qsci.bkt.clouddn.com/wechat2.png?imageView/2/w/700" alt="组件接口界面"></li>
-</ul>
-<h4 id="下一章主要内容：模仿一个流行的应用做个实例"><a href="#下一章主要内容：模仿一个流行的应用做个实例" class="headerlink" title="下一章主要内容：模仿一个流行的应用做个实例"></a>下一章主要内容：模仿一个流行的应用做个实例</h4>
       
     </div>
     
