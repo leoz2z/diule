@@ -132,7 +132,7 @@ ga('send', 'pageview');
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/丢了/" style="font-size: 10px;">丢了</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/微信小程序/" style="font-size: 20px;">微信小程序</a> <a href="/tags/生活杂记/" style="font-size: 10px;">生活杂记</a>
+						<a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/cssweekly/" style="font-size: 10px;">cssweekly</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/丢了/" style="font-size: 10px;">丢了</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/微信小程序/" style="font-size: 20px;">微信小程序</a> <a href="/tags/生活杂记/" style="font-size: 10px;">生活杂记</a>
 					</div>
 				</section>
 				
@@ -206,6 +206,113 @@ ga('send', 'pageview');
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-cssweekly250-understanding-the-critical-rendering-path" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/06/cssweekly250-understanding-the-critical-rendering-path/" class="article-date">
+  	<time datetime="2017-02-06T15:25:15.000Z" itemprop="datePublished">2017-02-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/06/cssweekly250-understanding-the-critical-rendering-path/">理解浏览器关键渲染路径正确姿势</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当浏览器接收到服务器返回的HTML响应，并且把像素展示在屏幕上之前，需要经过很多步骤。浏览器渲染的这一系列步骤，我们称之为“关键渲染路径”</p>
+<p>如果你对CRP有所了解，那么它对如何提高网站的性能有很大的帮助。CRP有如下6个阶段</p>
+<ul>
+<li>构建DOM树</li>
+<li>构建CSSOM 树</li>
+<li>运行JavaScript</li>
+<li>创建渲染树</li>
+<li>生成布局</li>
+<li>绘制</li>
+</ul>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/CRP-Sequence-Copy.png" alt="CRP-Sequence-Copy"></p>
+<h4 id="1-构建DOM树"><a href="#1-构建DOM树" class="headerlink" title="1. 构建DOM树"></a>1. 构建DOM树</h4><p>DOM（文档对象模型）树是一个表示HTML页面的对象。它从根元素<code>&lt;html&gt;</code>开始，然后根据每个元素/文本创建节点。嵌套在元素内的元素表示为子节点，每个节点包含该元素的完整属性。比如，<code>&lt;a&gt;</code>元素在其节点上将会存在<code>href</code>属性。</p>
+<p>比如接下来的这个HTML页面结构</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Understanding the Critical Rendering Path<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"style.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Understanding the Critical Rendering Path<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Introduction<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">small</span>&gt;</span>Copyright 2017<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上页面结构将会被构建成如下DOM树</p>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/DOM.png" alt="DOM"></p>
+<p>HTML的一个好处是它可以部分执行。 内容开始出现在页面上时候，不一定要求页面加载完毕。 但是，对于其他资源，例如（CSS和JavaScript）会阻碍页面的呈现。</p>
+<h4 id="2-构建CSSOM树"><a href="#2-构建CSSOM树" class="headerlink" title="2. 构建CSSOM树"></a>2. 构建CSSOM树</h4><p>CSSOM（CSS对象模型）树是一个表示页面相关样式的对象。它和DOM呈现方式类似，对于每个节点的关联样式，无论明确声明还是隐性继承，都会包含在内。</p>
+<p>上面HTML结构中的<code>style.css</code>文件，包含以下样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123; <span class="attribute">font-size</span>: <span class="number">18px</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">header</span> &#123; <span class="attribute">color</span>: plum; &#125;  </span><br><span class="line"><span class="selector-tag">h1</span> &#123; <span class="attribute">font-size</span>: <span class="number">28px</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">main</span> &#123; <span class="attribute">color</span>: firebrick; &#125;  </span><br><span class="line"><span class="selector-tag">h2</span> &#123; <span class="attribute">font-size</span>: <span class="number">20px</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">footer</span> &#123; <span class="attribute">display</span>: none; &#125;</span><br></pre></td></tr></table></figure>
+<p>以上样式将会被构建成如下CSSOM树</p>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/CSSOM.png" alt="CSSOM"></p>
+<p>CSS因为其“渲染阻塞型资源”特性。这意味着以下的渲染树在没有解析完成之前是不能构建的。不像HTML，CSS因为其继承级联关系，所以是不能被部分执行的。后面定义的样式会覆盖和改变之前定义的样式。如果在页面没有完全渲染之前，我们只用之前定义好的样式，那么页面将展示不正确。所以CSS必须要被完全解析才能进入下一个阶段。</p>
+<p>只有被当前设备应用的CSS文件才被视为阻止渲染。 <code>&lt;link rel =“stylesheet”&gt;</code>标签可以接受媒体属性，用于表明在什么设备下加载哪些CSS文件。 例如，如果我们有一个样式表，其媒体属性为orientation：landscape，如果我们正在纵向模式下查看该页面，则该CSS文件不会被视为渲染阻塞。</p>
+<p>CSS也可以是“脚本阻塞”。 这是因为JavaScript文件必须等到CSSOM已经构建，然后才能运行。</p>
+<h4 id="3-运行JavaScript"><a href="#3-运行JavaScript" class="headerlink" title="3. 运行JavaScript"></a>3. 运行JavaScript</h4><p>JavaScript 也被视为“渲染阻塞型资源”。那意味着JavaScript会阻塞HTML的解析。</p>
+<p>当解析器遇到<code>&lt;script&gt;</code>标签，不管是页面内还是外部引用，HTML渲染就会停止，并且读取JavaScript并执行。这就是为什么，如果我们的JavaScript文件需要引用HTML的元素，它必须放在该文档解析以后。</p>
+<p>为了避免JavaScript被解析器阻塞，可以通过设置异步加载async属性来加载它。</p>
+<h4 id="4-创建渲染树"><a href="#4-创建渲染树" class="headerlink" title="4. 创建渲染树"></a>4. 创建渲染树</h4><p>渲染树是DOM和CSSOM的集合。它是页面最终渲染结果的树状结构。这意味着它只会捕获页面可见的内容，比如，如果一个元素CSS样式设置成<code>display: none</code>，那么这个元素是不会被捕获的。</p>
+<p>根据上面提到的DOM和CSSOM，他们的渲染树将是这样的</p>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/Render-Tree.png" alt="Render-Tree"></p>
+<h4 id="5-生成布局"><a href="#5-生成布局" class="headerlink" title="5. 生成布局"></a>5. 生成布局</h4><p>布局是根据视图窗口大小确定的，CSS样式渲染的环境也是依赖它，例如百分比或视图单位。 视图窗口大小由文档头中提供的标签确定，或者如果未提供标签，则使用默认的视口宽度980像素。</p>
+<p>例如，最常见的视图窗口值是对应于设备宽度 -</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果用户访问设备上宽度为1000像素，则大小将基于该单位。 一半的视图窗口将是500px，10vw将是100px，等等。</p>
+<h4 id="6-绘制"><a href="#6-绘制" class="headerlink" title="6. 绘制"></a>6. 绘制</h4><p>最后，在绘制步骤中，页面的可见内容可以被转换为要在屏幕上显示的像素。</p>
+<p>绘制步骤花费的时间取决于DOM的大小，以及应用的样式。 一些样式需要比其他样式花更多的时间来执行。 例如，复杂的渐变背景图像将需要比简单的实心背景颜色更多的时间。</p>
+<h4 id="步骤汇总"><a href="#步骤汇总" class="headerlink" title="步骤汇总"></a>步骤汇总</h4><p>要查看页面的关键渲染路径，我们可以在Chrome DevTools中查看它。它位于“Timeline”标签下（在Canary版本下，此版本很快会成为Chrome的稳定版，已重命名为Performance）。</p>
+<p>再一起看下上面完整的例子（带<code>&lt;script&gt;</code>标签）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Understanding the Critical Rendering Path<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"style.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Understanding the Critical Rendering Path<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Introduction<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">small</span>&gt;</span>Copyright 2017<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在页面加载时如果我们查看Event Log，我们将看到</p>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/Timeline.png" alt="Timeline"></p>
+<ul>
+<li>发送请求 - 发送获取index.html请求</li>
+<li>解析HTML和发送资源请求 - 开始解析HTML和构建DOM。发送获取style.css和main.js的请求</li>
+<li>解析样式 - 根据style.css文件创建CSSOM</li>
+<li>执行脚本 - 执行main.js</li>
+<li>生成布局 - 根据meta里面的视图窗口生成布局</li>
+<li>绘制 - 以像素的形式绘制页面</li>
+</ul>
+<p>基于以上这些信息，我们就可以决定如何优化关键渲染路径。 我将在后面的文章中介绍一些优化技巧。</p>
+<h4 id="原文地址"><a href="#原文地址" class="headerlink" title="原文地址"></a><a href="https://bitsofco.de/understanding-the-critical-rendering-path/?utm_source=CSS-Weekly&amp;utm_campaign=Issue-250&amp;utm_medium=web" target="_blank" rel="external">原文地址</a></h4>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cssweekly/">cssweekly</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-wexin-tabs" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1117,94 +1224,6 @@ ga('send', 'pageview');
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发环境/">开发环境</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-git-常用命令" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/19/git-常用命令/" class="article-date">
-  	<time datetime="2016-05-19T09:04:44.000Z" itemprop="datePublished">2016-05-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/19/git-常用命令/">Git 常用命令</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录下工作中常用到的Git命令</p>
-<h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><ul>
-<li>clone仓库：<code>git clone {gitUrl} {localFileName}</code></li>
-<li>checkout 分支：<code>git checkout {branchName}</code></li>
-<li>拉取代码：<code>git pull = git fetch + git merge</code></li>
-<li>添加修改：<code>git add .</code></li>
-<li>添加已删除的文件列表：<code>git add -u .</code></li>
-<li>提交代码到本地: <code>git commit -m &quot;{commitInfo}&quot;</code></li>
-<li>提交代码到远程：<code>git push</code></li>
-</ul>
-<h3 id="回退-回退操作"><a href="#回退-回退操作" class="headerlink" title="回退/回退操作"></a>回退/回退操作</h3><ul>
-<li>回退已push文件中的错误：<code>git revert HEAD^</code><ul>
-<li>git revert 是生成一个新的提交来撤销某次提交，此次提交之前的commit都会被保留，常用于发布系统回滚</li>
-</ul>
-</li>
-<li>回退未push文件中的错误：<code>git reset HEAD^</code><ul>
-<li>git reset 是回到某次提交，提交及之前的commit都会被保留，但是此次之后的修改都会被退回到暂存区。</li>
-</ul>
-</li>
-<li>修复已修改文件的文件：<code>git checkout --</code></li>
-<li>删除untracked 文件/文件夹: <code>git clean -f -d</code></li>
-</ul>
-<h3 id="非常规操作："><a href="#非常规操作：" class="headerlink" title="非常规操作："></a>非常规操作：</h3><ul>
-<li>手工合并主干，<code>常用于解决冲突：git pull origin master</code></li>
-<li>按commit合并：<code>git cherry-pick </code></li>
-</ul>
-<h3 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h3><ul>
-<li>查看当前仓库信息：<code>git remote -v</code></li>
-<li>待push状态，查看diff和changeList: <code>git format-patch -1</code></li>
-<li>查看log，无法查看已经删除了的commit记录:  <code>git log --pretty=oneline</code></li>
-<li>查看log，包含所有分支的所有操作记录：<code>git reflog</code></li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 	</div>
 
       
