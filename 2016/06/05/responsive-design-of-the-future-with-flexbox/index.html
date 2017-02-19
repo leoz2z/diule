@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="baidu-site-verification" content="7SfBcT8C1U" />
+  <title>不一样的ES6(一) | 丢了</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在CSS中，浮动几乎代替了表格用来服务于布局，做为替身，比表格好用得多。但他们仍然有限。现在有一个建议的解决方案称为CSS Flexible Box布局模块，一般称为Flexbox。
+Flexbox是CSS3推荐方法，用来帮助设计师更好的控制页面的元素，在没有比较好的解决方案之前，Flexbox要比其他现代布局方案要更强。
+我们仍然没有大规模使用Flexbox， 是因为它至今还是受到限制的。如果F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不一样的ES6(一)">
+<meta property="og:url" content="http://diule.site/2016/06/05/responsive-design-of-the-future-with-flexbox/index.html">
+<meta property="og:site_name" content="丢了">
+<meta property="og:description" content="在CSS中，浮动几乎代替了表格用来服务于布局，做为替身，比表格好用得多。但他们仍然有限。现在有一个建议的解决方案称为CSS Flexible Box布局模块，一般称为Flexbox。
+Flexbox是CSS3推荐方法，用来帮助设计师更好的控制页面的元素，在没有比较好的解决方案之前，Flexbox要比其他现代布局方案要更强。
+我们仍然没有大规模使用Flexbox， 是因为它至今还是受到限制的。如果F">
+<meta property="og:image" content="http://ohgp0qsci.bkt.clouddn.com/flexbox-flex-direction.png">
+<meta property="og:image" content="http://ohgp0qsci.bkt.clouddn.com/flexbox-justify.png">
+<meta property="og:image" content="http://ohgp0qsci.bkt.clouddn.com/flex-wrap.png">
+<meta property="og:image" content="http://ohgp0qsci.bkt.clouddn.com/flex-order.png">
+<meta property="og:image" content="http://ohgp0qsci.bkt.clouddn.com/flexbox-flex-direction.png">
+<meta property="og:updated_time" content="2017-02-19T14:53:12.341Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不一样的ES6(一)">
+<meta name="twitter:description" content="在CSS中，浮动几乎代替了表格用来服务于布局，做为替身，比表格好用得多。但他们仍然有限。现在有一个建议的解决方案称为CSS Flexible Box布局模块，一般称为Flexbox。
+Flexbox是CSS3推荐方法，用来帮助设计师更好的控制页面的元素，在没有比较好的解决方案之前，Flexbox要比其他现代布局方案要更强。
+我们仍然没有大规模使用Flexbox， 是因为它至今还是受到限制的。如果F">
+<meta name="twitter:image" content="http://ohgp0qsci.bkt.clouddn.com/flexbox-flex-direction.png">
+  
+    <link rel="alternative" href="/atom.xml" title="丢了" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88234563-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://tva4.sinaimg.cn/crop.0.53.1113.1113.180/6f92da36tw1edgxjntbphj20v01j94f4.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">六不准</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">怕丢了，所以记录下来</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/cssweekly/" style="font-size: 10px;">cssweekly</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/丢了/" style="font-size: 10px;">丢了</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/微信小程序/" style="font-size: 20px;">微信小程序</a> <a href="/tags/生活杂记/" style="font-size: 10px;">生活杂记</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			        </div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">爱工作，也爱生活；爱他人，更爱自己。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">六不准</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://tva4.sinaimg.cn/crop.0.53.1113.1113.180/6f92da36tw1edgxjntbphj20v01j94f4.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">六不准</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">怕丢了，所以记录下来</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-responsive-design-of-the-future-with-flexbox" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/05/responsive-design-of-the-future-with-flexbox/" class="article-date">
+  	<time datetime="2016-06-05T03:37:44.000Z" itemprop="datePublished">2016-06-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      不一样的ES6(一)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在CSS中，浮动几乎代替了表格用来服务于布局，做为替身，比表格好用得多。但他们仍然有限。现在有一个建议的解决方案称为CSS Flexible Box布局模块，一般称为Flexbox。</p>
+<p>Flexbox是CSS3推荐方法，用来帮助设计师更好的控制页面的元素，在没有比较好的解决方案之前，Flexbox要比其他现代布局方案要更强。</p>
+<p>我们仍然没有大规模使用Flexbox， 是因为它至今还是受到限制的。如果Flexbox得到浏览器友好支持的时候，加上媒体查询的弹性布局会使Web设计师在Web布局上带来革命性的变化。</p>
+<h3 id="CSS的痛楚"><a href="#CSS的痛楚" class="headerlink" title="CSS的痛楚"></a>CSS的痛楚</h3><p>在写这篇教程时，支持Flexbox的浏览器还是有限的。Chrome浏览器需要添加其自身的前缀“-webkit-”才能识别。其他的Webkit内核浏览器，特别是移动端的Safari和Android浏览支持都是仅仅有限的。而微软IE只有IE10。不过这个Flexbox规范本身是在不断变化，在过去的几年里看到有关于他的许多变化。但随着规范的定案和浏览器后期的开发，Flexbox终将成为一个很重要的属性——用于设计上的布局。下面主要介绍它在响应式设计中应用。</p>
+<h3 id="容器（Containers）"><a href="#容器（Containers）" class="headerlink" title="容器（Containers）"></a>容器（Containers）</h3><p>一个Flexbox布局需要创建一个包含元素的容器，比如一个“<div>”，用来包裹一些项目。最基本的，Flexbox会让其伸缩项目放在一个线上（主线、侧线），不需要修改HTML结构就能实现其同一基线上的任意摆放。如下面的示例：著作权归作者所有。</div></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>2<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/flexbox-flex-direction.png" alt="flexbox-flex-direction"></p>
+<p>在上面的示例中，三个伸缩项目可以通过“flex-direction”属性使用其在伸缩容器中放置在第一和最后，也可以是水平或垂直摆放。在一个web页面中，这意味着，在不改变HTML结构情况之下整个布局可能会重安排。这将是一个名副其实的响应式设计。</p>
+<p>当使用“display:block”时元素变成块形式垂直摆放（在不浮动情况之下），“display:inline”会让元素包裹文本保持在同一行，而“display:flex”可以让设计师改变方向、顺序、对齐方式和间距。从列表布局角度出处，Flexbox布局适用于任何系列的产品。Flexbox可用的用途包括：</p>
+<ul>
+<li>快速调整列、页眉、页脚和侧边栏位置</li>
+<li>自动计算导航间距</li>
+<li>意味着更少的HTML使用CSS实现更多的布局</li>
+<li>鉴于随机物品在同一个系列，使用.important在顶部随意移动显示。</li>
+</ul>
+<p>最重要的是要注意Flexbox对设计的视觉风格的影响。重新排列元素在屏幕上显示的次序并不会影响他们的HTML结构与Javascript的框架或屏幕阅读器的阅读。</p>
+<h3 id="对齐（ALIGNMENT）"><a href="#对齐（ALIGNMENT）" class="headerlink" title="对齐（ALIGNMENT）"></a>对齐（ALIGNMENT）</h3><p>除了方向，伸缩项目有可能会推到伸缩容器的开始位置（全部靠左）、结束位置（全部靠右）、居中以及有一个的间距。可以在伸缩容器上添加“justify-content”属性来控制伸缩项目之间对齐方式：开始、结束等。</p>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/flexbox-justify.png" alt="flexbox-justify"></p>
+<p>上图在伸缩项目排列中隐含的线称为“主轴（main axis）”。这里的示例让导航的链接沿着主轴线（显示的黑线），根据需要自动改变空间。</p>
+<p>每个主轴都有一个方向(flex-direction)和一个流(flex-fow):水平方向的有向左或向右（row或row-reverse）；垂直方向的有向下和向上（column和column-reverse）。上面例子中的第一个设置了flex-row为row，意思是“flex-start”让伸缩项目向左边推。当flex-row设置为“row-reverse”时，像最后一个示例所示，“flex-start”推到伸缩容器最右边。</p>
+<h3 id="包裹（WRAPPING）"><a href="#包裹（WRAPPING）" class="headerlink" title="包裹（WRAPPING）"></a>包裹（WRAPPING）</h3><p>当一系列的伸缩项目到达伸缩容器的终点位置时，可以让伸缩项目在一行显示或者多行显示，你就传统的内联元素一样。</p>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/flex-wrap.png" alt="flexbox-flex-wrap"></p>
+<p>上面的属性应用到伸缩容器上。其他的适用于每个伸缩项目。</p>
+<h3 id="顺序（ORDER）"><a href="#顺序（ORDER）" class="headerlink" title="顺序（ORDER）"></a>顺序（ORDER）</h3><p>最后一个主要属性（有关于响应式设计方面）用来控制元素出现的精确顺序。著作权归作者所有。</p>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/flex-order.png" alt="flexbox-flex-order"></p>
+<p>默认情况之下，伸缩容器中的每一个伸缩项目都有一个“order:0”属性。给其中一个伸缩项目设置“order:1”，会让这个伸缩项目沿主轴向右（侧轴向下）推动。如果设置一个伸缩项目的order值小于0，例如：“order:-1”，会让这个伸缩项目沿主轴向左（侧轴向上）推动。</p>
+<p>Flexbox的侧轴具有和主轴一样的属性功能。到目前为止，影响响应式设计的主要属性是“flex-direction”、“flexbox-justify”和order。</p>
+<h3 id="Flexbox和Media-Queries"><a href="#Flexbox和Media-Queries" class="headerlink" title="Flexbox和Media Queries"></a>Flexbox和Media Queries</h3><p>响应式设计需要在不同屏幕尺寸具有不同的布局。不幸的是，一些布局要求HTML具有一个特定的方式，比如说图片在标题前，或者图片在标题后。Flexbox可以通过CSS来控制更多的移位，这样网页设计师就可以通过媒体查询在不同的屏幕大小中应用不同的配置。</p>
+<p>这里有一个挑战性的案例：一个新闻网站想要展示其最新的文章片段。每个片段都有一个缩略图和不同数量的文本。需要有三种布局风格：桌面宽屏；笔记本的中等大小屏和智能手机的320px宽。可访问性，它必须保持导航在或者接近网站的标题，但出版本商想尽可能的突出大标题显示。</p>
+<p><img src="http://ohgp0qsci.bkt.clouddn.com/flexbox-flex-direction.png" alt="flexbox-flex-direction"></p>
+<h3 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h3><p>为了结构的清晰，这个示例使用了简单的HTML结构：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/trendy-logo.png"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>about<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>other<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>contact<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">figure</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/box.png"</span> /&gt;</span><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Sample headline goes here<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Sample text sample text sample text sample text sample text sample text sample text <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span>&gt;</span>…<span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>有一些重要的事项：</p>
+<ul>
+<li>一个<div>容器包裹了整个页面。</div></li>
+<li>标题和导航链接在文章列表区域<section>前面</section></li>
+<li>每一篇文章都是一个独立的章节放在<section>里面。</section></li>
+</ul>
+<h3 id="Media-Queries条件"><a href="#Media-Queries条件" class="headerlink" title="Media Queries条件"></a>Media Queries条件</h3><p>我们设置了三个响应式断点：窄屏、中屏和宽屏。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> only screen and (max-width: <span class="number">480px</span>) &#123;</span><br><span class="line"> … <span class="comment">/* 窄屏 */</span> </span><br><span class="line">&#125; </span><br><span class="line">@<span class="keyword">media</span> only screen and (min-width: <span class="number">481px</span>) and (max-width: <span class="number">960px</span>) &#123; </span><br><span class="line">  … <span class="comment">/* 中屏 */</span></span><br><span class="line">&#125; </span><br><span class="line">@<span class="keyword">media</span> only screen and (min-width: <span class="number">961px</span>) &#123; </span><br><span class="line">  … <span class="comment">/* 宽屏 */</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="窄屏：交替图标和重排结构"><a href="#窄屏：交替图标和重排结构" class="headerlink" title="窄屏：交替图标和重排结构"></a>窄屏：交替图标和重排结构</h4><p>1、首先指定每个“<article>”元素作为伸缩容器。在这些例子中，我们使用“-webkit-”前缀来支持Chrome。</article></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">article</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">  <span class="attribute">-webkit-align-items</span>: start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、接下来为所有的文章列表设置方向：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">article</span><span class="selector-pseudo">:nth-child(odd)</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-flex-direction</span>: row;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">article</span><span class="selector-pseudo">:nth-child(even)</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-flex-direction</span>: row-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、把内容优先于导航显示，我们需要把“.wrapper”设置为伸缩容器，并设置伸缩流的方向为“column”:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">  <span class="attribute">-webkit-flex-direction</span>: column;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、最后，把<nav>元素也设置成伸缩容器，使用“justify-content”属性设置导航链接之间的间距工：</nav></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">nav</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-order</span>: <span class="number">999</span>;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">  <span class="attribute">-webkit-justify-content</span>: space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>设置了“order”为999是为了过度的布局，而没有设置二到八这样的数值，其实任何正数都可以工作。但设置999是为了应对未来order的变化，999是一个安全的数值，但有一些网站将会超过导航998节。</p>
+<h4 id="中屏：一个纵列"><a href="#中屏：一个纵列" class="headerlink" title="中屏：一个纵列"></a>中屏：一个纵列</h4><p>浏览器在480px到800px之间宽，可能有足够的高度连续展示文章列表供用户阅读。这个布局，我们要做到的就是这一点：</p>
+<p>1、像窄屏的布局一样，将导航栏变成弹性布局，并给导航链接留有一定的空间：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">nav</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">  <span class="attribute">-webkit-flex-direction</span>: row;</span><br><span class="line">  <span class="attribute">-webkit-justify-content</span>: space-between;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、Flexbox布局不需要花哨，这个例子演示的了如何让Flexbox制作一个等宽列，可用来代替以前那种依靠浮动和清除浮动的布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">article</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">  <span class="attribute">-webkit-justify-content</span>: start;</span><br><span class="line">  <span class="attribute">-webkit-flex-direction</span>: row;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="宽屏：使用额外的空间"><a href="#宽屏：使用额外的空间" class="headerlink" title="宽屏：使用额外的空间"></a>宽屏：使用额外的空间</h4><p>宽屏的布局主要利用“.wrapper”伸缩容器的空间，把文章列表像tiling一样的铺置。</p>
+<p>1、把“.wrapper”变成伸缩容器，将把导航放在左边：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">  <span class="attribute">-webkit-flex-direction</span>: row;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果想把导航放在右边，可以使用“row-reverse”来替代“row”。</p>
+<p>2、标题和导航叠加是个很棘手的事情，因为我们把”.wrapper”变成了伸缩容器，同时也使标题、导航和section的文章列表变成了水平展示。意思就是标题、logo和左边的导航叠加在一列中。</p>
+<p>解决这样的问题，我们要有一点手法：使用一个负的margin-left和padding-top，将导航拉到logo的下面。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">nav</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">25%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">120px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、文章列表要像Tile一样展示，需要给section设置成伸缩容器，然后缩小让其放置在同一行</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">section</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">  <span class="attribute">-webkit-flex-wrap</span>: wrap;</span><br><span class="line">  <span class="attribute">-webkit-align-items</span>: flex-start;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">article</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">180px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：三种不同的布局，利用空间来实现响应式布局是最好的。</p>
+<h3 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h3><p>虽然Flexbox布局还不能得到广泛的支持，但后结随着规范的落定和各大浏览器厂商的支持力度提高，Flexbox将会成为CSS布局的好工具。</p>
+<h4 id="英文原文地址"><a href="#英文原文地址" class="headerlink" title="英文原文地址"></a><a href="http://blog.teamtreehouse.com/responsive-design-of-the-future-with-flexbox" target="_blank" rel="external">英文原文地址</a></h4><h4 id="中文译文地址"><a href="#中文译文地址" class="headerlink" title="中文译文地址"></a><a href="http://www.w3cplus.com/css3/responsive-design-of-the-future-with-flexbox.html" target="_blank" rel="external">中文译文地址</a></h4>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/05/lost-table/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          银行/金融/通信 网站挂失导航
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/05/diff-es6-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">不一样的ES6(一)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="responsive-design-of-the-future-with-flexbox" data-title="不一样的ES6(一)" data-url="http://diule.site/2016/06/05/responsive-design-of-the-future-with-flexbox/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 六不准
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

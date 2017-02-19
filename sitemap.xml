@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://diule.site/2016/06/05/diff-es6-1/</loc>
+    
+    <lastmod>2017-02-19T14:53:33.413Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://diule.site/2016/06/05/responsive-design-of-the-future-with-flexbox/</loc>
+    
+    <lastmod>2017-02-19T14:53:12.341Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://diule.site/2017/02/06/cssweekly250-understanding-the-critical-rendering-path/</loc>
     
     <lastmod>2017-02-07T17:13:13.093Z</lastmod>
@@ -68,13 +82,6 @@
     <loc>http://diule.site/2016/06/05/lost-table/</loc>
     
     <lastmod>2016-06-05T11:05:27.808Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://diule.site/2016/06/05/diff-es6-1/</loc>
-    
-    <lastmod>2016-06-05T05:45:59.183Z</lastmod>
     
   </url>
   
