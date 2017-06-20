@@ -7,19 +7,17 @@
   <meta name="baidu-site-verification" content="7SfBcT8C1U" />
   <title>关于mod_rewrite重写模块 | 丢了</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文由 六不准 翻译。英文出处：DK Lynn
-Apache 以其极高的性价比让越来越多的公司组织选择它作为服务器。其中它有一个很有用的功能就是mod_rewrite模块，一个可将用户请求的URI根据特定规则转换的模块。这篇文章将引领你学习rewrite 规则，正则表达，rewrite条件，以及提供了一系列的例子。首先，我假设你已经懂得URI 重写对你网站的意义为前提，如果对这一方面你想了解得更多">
+  <meta name="description" content="本文由 六不准 翻译。英文出处：DK Lynn Apache 以其极高的性价比让越来越多的公司组织选择它作为服务器。其中它有一个很有用的功能就是mod_rewrite模块，一个可将用户请求的URI根据特定规则转换的模块。这篇文章将引领你学习rewrite 规则，正则表达，rewrite条件，以及提供了一系列的例子。首先，我假设你已经懂得URI 重写对你网站的意义为前提，如果对这一方面你想了解得更多">
+<meta name="keywords" content="Apache">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于mod_rewrite重写模块">
 <meta property="og:url" content="http://diule.site/2015/01/19/php-mode-rewrite/index.html">
 <meta property="og:site_name" content="丢了">
-<meta property="og:description" content="本文由 六不准 翻译。英文出处：DK Lynn
-Apache 以其极高的性价比让越来越多的公司组织选择它作为服务器。其中它有一个很有用的功能就是mod_rewrite模块，一个可将用户请求的URI根据特定规则转换的模块。这篇文章将引领你学习rewrite 规则，正则表达，rewrite条件，以及提供了一系列的例子。首先，我假设你已经懂得URI 重写对你网站的意义为前提，如果对这一方面你想了解得更多">
+<meta property="og:description" content="本文由 六不准 翻译。英文出处：DK Lynn Apache 以其极高的性价比让越来越多的公司组织选择它作为服务器。其中它有一个很有用的功能就是mod_rewrite模块，一个可将用户请求的URI根据特定规则转换的模块。这篇文章将引领你学习rewrite 规则，正则表达，rewrite条件，以及提供了一系列的例子。首先，我假设你已经懂得URI 重写对你网站的意义为前提，如果对这一方面你想了解得更多">
 <meta property="og:updated_time" content="2016-12-11T05:53:18.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于mod_rewrite重写模块">
-<meta name="twitter:description" content="本文由 六不准 翻译。英文出处：DK Lynn
-Apache 以其极高的性价比让越来越多的公司组织选择它作为服务器。其中它有一个很有用的功能就是mod_rewrite模块，一个可将用户请求的URI根据特定规则转换的模块。这篇文章将引领你学习rewrite 规则，正则表达，rewrite条件，以及提供了一系列的例子。首先，我假设你已经懂得URI 重写对你网站的意义为前提，如果对这一方面你想了解得更多">
+<meta name="twitter:description" content="本文由 六不准 翻译。英文出处：DK Lynn Apache 以其极高的性价比让越来越多的公司组织选择它作为服务器。其中它有一个很有用的功能就是mod_rewrite模块，一个可将用户请求的URI根据特定规则转换的模块。这篇文章将引领你学习rewrite 规则，正则表达，rewrite条件，以及提供了一系列的例子。首先，我假设你已经懂得URI 重写对你网站的意义为前提，如果对这一方面你想了解得更多">
   
     <link rel="alternative" href="/atom.xml" title="丢了" type="application/atom+xml">
   
@@ -136,7 +134,7 @@ ga('send', 'pageview');
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/cssweekly/" style="font-size: 10px;">cssweekly</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/丢了/" style="font-size: 10px;">丢了</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/微信小程序/" style="font-size: 20px;">微信小程序</a> <a href="/tags/生活杂记/" style="font-size: 10px;">生活杂记</a>
+						<a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/cssweekly/" style="font-size: 10px;">cssweekly</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/weex/" style="font-size: 10px;">weex</a> <a href="/tags/丢了/" style="font-size: 10px;">丢了</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/微信小程序/" style="font-size: 20px;">微信小程序</a> <a href="/tags/生活杂记/" style="font-size: 10px;">生活杂记</a>
 					</div>
 				</section>
 				
@@ -249,47 +247,47 @@ ga('send', 'pageview');
         <p>本文由 <a href="http://http://diule.site/" target="_blank" rel="external">六不准</a> 翻译。<br>英文出处：<a href="http://www.sitepoint.com/article/apache-mod_rewrite-examples/" target="_blank" rel="external">DK Lynn</a></p>
 <p>Apache 以其极高的性价比让越来越多的公司组织选择它作为服务器。其中它有一个很有用的功能就是mod_rewrite模块，一个可将用户请求的URI根据特定规则转换的模块。<br>这篇文章将引领你学习rewrite 规则，正则表达，rewrite条件，以及提供了一系列的例子。<br>首先，我假设你已经懂得URI 重写对你网站的意义为前提，如果对这一方面你想了解得更多，这里我向你推荐 mod_rewrite: A Beginner’s Guide to URL Rewriting 这本书。你可以从书中找到关于这方面得更多信息。 </p>
 <h3 id="测试服务器安装"><a href="#测试服务器安装" class="headerlink" title="测试服务器安装"></a>测试服务器安装</h3><p>一些服务器没有开启mod_rewrite模块（服务器默认关闭），你可以键入一行PHP代码来确定你的服务器是否已经开启mod_rewrite模块： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phpinfo();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">phpinfo();</div></pre></td></tr></table></figure>
 <p>在浏览器运行这段代码，找到Apache Modules section，如果mod_rewrite没有出现在其列表中，那么你就需要通知你的服务商开启mod_rewrite服务，或者..换另外一个好的服务商。大多数服务商都会开启mod_rewrite模块，所以你很容易找到。 </p>
 <h3 id="mod-rewrite的魔力"><a href="#mod-rewrite的魔力" class="headerlink" title="mod_rewrite的魔力"></a>mod_rewrite的魔力</h3><p>简单举例：创建三个文件，分别命名为 test.html,test.php和.htaccess </p>
 <p>test.html 输入： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;This is the HTML file.&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;This is the HTML file.&lt;/h1&gt;</div></pre></td></tr></table></figure>
 <p>test.php输入： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;This is the php file.&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;This is the php file.&lt;/h1&gt;</div></pre></td></tr></table></figure>
 <p>.htaccess输入:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine on </span><br><span class="line">RewriteRule ^/?test\.html$ test.php [L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RewriteEngine on </div><div class="line">RewriteRule ^/?test\.html$ test.php [L]</div></pre></td></tr></table></figure>
 <p>将以上三个文件放test测试文件夹下，在浏览器录入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.example.com/test/test.html</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://www.example.com/test/test.html</div></pre></td></tr></table></figure>
 <p>在浏览器中将 www.example.com替换成你自己的域名。如果运行结果显示“This is the PHP file”，那么运行成功，如果结果显示“This is the Html file”,那么肯定是哪里出了问题，请你再仔细检查下。</p>
 <p>如果你测试成功，你是否发现了我们录入了test.html的文件名，确执行了test.php文件，是的，你已经初识了mod_rewrite的神奇。 </p>
 <h3 id="mod-rewrite-正则表达式"><a href="#mod-rewrite-正则表达式" class="headerlink" title="mod_rewrite 正则表达式"></a>mod_rewrite 正则表达式</h3><p>现在我们可以重写URLs了！设想我们有一个显示城市信息的网站。根据URI选择城市：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.example.com/display.php?country=USA &amp;state=California&amp;city=San_Diego</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://www.example.com/display.php?country=USA &amp;state=California&amp;city=San_Diego</div></pre></td></tr></table></figure>
 <p>这个URL太长并且对用户也不友好，我们更希望写成这样： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.example.com/USA/California/San_Diego</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://www.example.com/USA/California/San_Diego</div></pre></td></tr></table></figure>
 <p>我们需要告诉Apache新的URL会根据一定的格式转化成这样，为了让display.php明白查询的字符，所以我们将用到正则表达式告诉mod_rewrite匹配我们的URLs。如果你对正则表达式不太熟悉，许多网站提供了优秀的教程供你学习。在本文的末尾，我也会列举出比较好的参考网址。如果你还是不能明白我所讲述的，那么我建议你看看后面链接中的前两篇。 </p>
 <p>一个最常用的正则就是（.<em>）。它含有两个元素：一是“点”，表示任意字符；二是“星”，表示以前的全部字符。所以（.</em>）会匹配{REQUEST_URI}的所有字符。{REQUEST_URI}是URL中出去域名以及“？”符号的所有查询字符，也是Apache 重写技术尝试匹配的字符。 </p>
 <p>包裹在正则表达式中的元素存放在“原子”内，它是在规则范围内允许被匹配的变量，所以以上正则存储了USA/California/San_Diego在“原子”中，为了解决我们的问题，我们需要三个“原子”，他们可以用左斜杠“/”进行分隔，所以正则表达式成了： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(.*)/(.*)/(.*)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(.*)/(.*)/(.*)</div></pre></td></tr></table></figure>
 <p>以上正则，在{REQUEST_URI}中通过两个“/”的分割存储了三个值，为了解决我们具体问题，我们得加一点限制――毕竟，第一个和最后一个原子可以匹配任何字符。 </p>
-<p>开始，我们可以添加一些特殊的字符，比如表示正则“开始”或者“结束”，“^”字符表示正则的开始而“$”表示正则的结束。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(.*)/(.*)/(.*)$</span><br></pre></td></tr></table></figure></p>
+<p>开始，我们可以添加一些特殊的字符，比如表示正则“开始”或者“结束”，“^”字符表示正则的开始而“$”表示正则的结束。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">^(.*)/(.*)/(.*)$</div></pre></td></tr></table></figure></p>
 <p>这个正则表示整个字符串将全部匹配，除去之前后者之后，没有任何例外。<br>但是，这个方法仍然匹配的范围太广，我们将匹配的字符按照原子形式存放，然后通过他们形成查询字符串，所以我们必须信任我们所匹配的字符。用(.*)匹配字符串，由于允许了太多字符，所以会存在潜在的安全隐患，引用不当会使mod_rewrite运行出故障。</p>
 <p>为了避免一些不必要的麻烦，让我们更改一下我们的原子正则，让其更加准确的匹配我们允许的字符。因为这些原子代表了地区地名，所以我们完全可以用A到Z的大小写来表示他们，另外因为地名之间有空格，所以下划线“<em>”也是被允许的。我们用中括弧明确我们匹配的正则，然后用短横线“-”表示连接的范围，所以被我们允许的正则修改成了[a-zA-Z</em>],因为我们还要避免匹配到空名字，所以用“+”来匹配在该字符之前的一个或者多个字符，所以我们的正则成了： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^([a-zA-Z_]+)/([a-zA-Z_]+)/([a-zA-Z_]+)$</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">^([a-zA-Z_]+)/([a-zA-Z_]+)/([a-zA-Z_]+)$</div></pre></td></tr></table></figure>
 <p>{REQUEST_URI}是以“/”开头。Apache 在更改版本的时候会更改正则引擎，一代Apache要求有斜杠而二代Apache却不允许！但是我们可以用^/?（？表示匹配字符本身或者前一个字符）来兼容两个版本的Apache，所以我们的正则又成了: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^/?([a-zA-Z_]+)/([a-zA-Z_]+)/([a-zA-Z_]+)$</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">^/?([a-zA-Z_]+)/([a-zA-Z_]+)/([a-zA-Z_]+)$</div></pre></td></tr></table></figure>
 <p>正则在手，我们就可以将原子标识到URL上了： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display.php?country=$1 &amp;state=$2&amp;city=$3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">display.php?country=$1 &amp;state=$2&amp;city=$3</div></pre></td></tr></table></figure>
 <p>$1表示国家原子；$2表示省州原子；$3表示城市原子，这里可以加上9个原子，分别用$1到$9表示。<br>现在我们要做的就是在该目录下创建一个新的.htaccess文件，录入一下代码： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteRule ^/?([a-zA-Z_]+)/([a-zA-Z_]+)/([a-zA-Z_]+)$ display.php?country=$1 &amp;state=$2&amp;city=$3 [L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RewriteRule ^/?([a-zA-Z_]+)/([a-zA-Z_]+)/([a-zA-Z_]+)$ display.php?country=$1 &amp;state=$2&amp;city=$3 [L]</div></pre></td></tr></table></figure>
 <p>然后保存，重写规则必须写在一行并且用一个空格分开每一个参数，我们用[L]或者’last’表示匹配结束。（一会有更多flags介绍） </p>
 <p>我们的重写规则已经创建完成， URL请求字符上各原子的值将经过我们匹配的正则，加上查询变量到我们的重写URL上。display.php将从查询字符中解析这些值，然后将他们送入数据库查询或者进行其他数据库操作。<br>如果你的正则只允许有限的几个国家，为了避免数据库错误，你可以在正则中加入一下被允许条件，例子如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^/?(USA|Canada|Mexico)/([a-zA-Z_]+)/([a-zA-Z_]+)$</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">^/?(USA|Canada|Mexico)/([a-zA-Z_]+)/([a-zA-Z_]+)$</div></pre></td></tr></table></figure>
 <p>如果你关心查询字符串的大小写问题，由于你数据库对大写有严格的限制，那么你可以在正则表达式后面加一个[NC]FLAG位来忽略大小写，但是不要忘记在你通过$_GET 获取传递值的时候，把他们转换成小写。 </p>
 <p>如果你想用数字（0，1…..9）来表示具体的地区，那么需要更改正则中的([a-zA-Z_]+)成([0-9])来匹配单个数字，([0-9]{1,2})匹配两位数字（0到99）,([0-9]+)匹配多位数字，这个对匹配数据库ID之类的非常有用。</p>
 <h3 id="RewriteCond-指令"><a href="#RewriteCond-指令" class="headerlink" title="RewriteCond 指令"></a>RewriteCond 指令</h3><p>现在你已经学会了mod_rewrite的一些基本用法，现在我们来学习下怎样用RewirteCond指令来处理其他各类型的情况。当RewirteCond指令明确声明以后，mod_rewrite将根据它们做出相应的处理。 </p>
 <p>RewirteCond 指令的形式和RewriteRule有点类似，形式为：RewirteCond 被匹配的字符 正则 FLAG标识。逻辑FLAG标识 [OR],是非常有用的，记住所有RewirteCond 以及RewriteRule指令在[LAST]指令之前，所有的逻辑与关系都会被包含。</p>
 <p>你可以用RewirteCond指令测试服务器变量，在this is the best list of server variables一文可以找到相关说明。<br>举一个列子，假设我们想将“www”放入你的域名中，首先你得测试你的服务器{HTTP_HOST}变量，看www.是否已经存在，如果没有那么定向到期望的主机名： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;HTTP_HOST&#125; !^www\.example\.com$ [NC] </span><br><span class="line">RewriteRule .? http://www.example.com%&#123;REQUEST_URI&#125; [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;HTTP_HOST&#125; !^www\.example\.com$ [NC] </div><div class="line">RewriteRule .? http://www.example.com%&#123;REQUEST_URI&#125; [R=301,L]</div></pre></td></tr></table></figure>
 <p>这里{HTTP_HOST}是一个Apache服务器变量，我们必须加一个“%”字符再之前。正则表达式以“!”开始表示如果正则不匹配那么条件成立。我们当然也要转义“.”字符，将其作为一个普通字面字符而不是表示所有字符。再最后我们还加了一个忽略大小写的[NC]FLAG。 </p>
 <p>RewriteRule匹配了零或者任意一个字符，并且定向到 <code>http://www.example.com</code> 加上原来{REQUEST_URI}值。</p>
 <p>R=301向服务器提出301请求，表明这是一个永久转向，最后一个[L]表示已经完成这段正则匹配。<br>RewriteCond也可以创建原子，在RewriteRule中原子是以$1…..$9表示，但是在RewriteCond中是以%1….%9表示。你可以在稍后的例子中看到具体的原子操作。 </p>
@@ -303,69 +301,69 @@ ga('send', 'pageview');
 <li><code>next|N －[N]</code> 可以让你的重写条件循环匹配，当你不知道{REQUEST_URI}有多少字符进行匹配的时候很有用。<br>你可以在 Apache.org’s mod_rewrite documentation page.了解到其他mod_rewrite FLAGS。</li>
 </ul>
 <h3 id="mod-rewrite注释"><a href="#mod-rewrite注释" class="headerlink" title="mod_rewrite注释"></a>mod_rewrite注释</h3><p>任何mod_rewrite代码之前都要加上RewriteEngine on这个状态，另外RewriteEngine on还可以用到其他地方。作为一个好的程序员，你知道注释对于程序来说是多么的重要。mod_rewrite允许在RewriteEngine off 与RewriteEngine on之间加上你的注释： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine off </span><br><span class="line">RewriteCond %&#123;HTTP_HOST&#125; !^www\.example\.com$ [NC] </span><br><span class="line">RewriteRule .? http://www.example.com%&#123;REQUEST_URI&#125; [R=301,L]</span><br><span class="line">RewriteEngine on</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RewriteEngine off </div><div class="line">RewriteCond %&#123;HTTP_HOST&#125; !^www\.example\.com$ [NC] </div><div class="line">RewriteRule .? http://www.example.com%&#123;REQUEST_URI&#125; [R=301,L]</div><div class="line">RewriteEngine on</div></pre></td></tr></table></figure>
 <p>以上所有的程序代码都不会被执行，RewriteEngine状态值的改变对新的mod_rewrite 代码开发非常有用。像你在PHP里面用/<em> … </em>/注释一样，好好的运用他们。 </p>
 <h3 id="mod-rewrite小技巧"><a href="#mod-rewrite小技巧" class="headerlink" title="mod_rewrite小技巧"></a>mod_rewrite小技巧</h3><p>作为站长，你要决定怎样提高你网页对访问者的辨识度以及在重写的URI地址里放入适当的信息。在创建新的URI规则的时候务必考虑详细周全一些。另外当你完成新的URI规则以后，必须回去更新以前老的链接来匹配新的规则。</p>
 <p>当你在设计新的URI规则的时候，一定注意其唯一性。举一个先前的例子，我用了国家名，州省名，城市名作为URI的元素，因为他们在数据库里面都是唯一的。但是如果建立一个让用户自己更新的数据库，我们没有理由让用户取的文章名字保持唯一性，所以文章一般在数据库里是以一个自动增长的ID作为唯一识别码，这个唯一ID对URL重写规则相当友好，它可以使你的重写规则更加简洁，在URL里面可以用原子非常直接的将其值标识出来。</p>
 <p>人们通常想映射数据库里面的值比如标题以及其他字符作为URL的标识，在mod_rewrite中有一个RewriteMap状态专门处理这种情况，但是前提是你必须有修改Apache配置文件httpd.conf的权限。所以为了根本避免这个问题，还是直接用ID创建你的链接吧。<br>空格是以%20的形式展示在URL中的，所以你必须在PHP代码里面将其替换掉，PHP的str_replace函数完全可以胜任这项工作。你只需要在$_GET获取查询值的时候，将其替换就可以了。但是在数据库中空格是难免的，所以我宁愿将空格替换成下划线，一下为PHP代码： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$name = str_replace ( &apos; &apos;, &apos;_&apos;, $name );</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$name = str_replace ( &apos; &apos;, &apos;_&apos;, $name );</div></pre></td></tr></table></figure>
 <p>在添加新的URL规则的时候，小心不要打破了原先已存在的链接间的相对关系。开发人员通常会惊讶为什么有时候CSS,JAVASCRIPT,图片等文件出现错误或者不启作用了。记住相对链接只匹配你当前URL的地址，所以你需要将这些相对链接更改成绝对链接地址，或者在你的静态网页加上HTML <base>标签。</p>
 <h3 id="13-个mod-rewrite-应用举例"><a href="#13-个mod-rewrite-应用举例" class="headerlink" title="13 个mod_rewrite 应用举例"></a>13 个mod_rewrite 应用举例</h3><p>先前我们举了一个给每个链接加一个www的列子，现在让我们看看用mod_rewrite还可以做哪些工作。 </p>
 <ul>
 <li>给子域名加www标记 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;HTTP_HOST&#125; ^([a-z.]+)?example\.com$ [NC] </span><br><span class="line">RewriteCond %&#123;HTTP_HOST&#125; !^www\. [NC] </span><br><span class="line">RewriteRule .? http://www.%1example.com%&#123;REQUEST_URI&#125; [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;HTTP_HOST&#125; ^([a-z.]+)?example\.com$ [NC] </div><div class="line">RewriteCond %&#123;HTTP_HOST&#125; !^www\. [NC] </div><div class="line">RewriteRule .? http://www.%1example.com%&#123;REQUEST_URI&#125; [R=301,L]</div></pre></td></tr></table></figure>
 <p>这个规则抓取二级域名的%1变量，如果不是以www开始，那么就加www，以前的域名以及{REQUEST_URI}会跟在其后。 </p>
 <ul>
 <li>去掉域名中的www标记</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;HTTP_HOST&#125; !^example\.com$ [NC] </span><br><span class="line">RewriteRule .? http://example.com%&#123;REQUEST_URI&#125; [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;HTTP_HOST&#125; !^example\.com$ [NC] </div><div class="line">RewriteRule .? http://example.com%&#123;REQUEST_URI&#125; [R=301,L]</div></pre></td></tr></table></figure>
 <ul>
 <li>去掉www标记，但是保存子域名 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;HTTP_HOST&#125; ^www\.(([a-z0-9_]+\.)?example\.com)$ [NC] </span><br><span class="line">RewriteRule .? http://%1%&#123;REQUEST_URI&#125; [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;HTTP_HOST&#125; ^www\.(([a-z0-9_]+\.)?example\.com)$ [NC] </div><div class="line">RewriteRule .? http://%1%&#123;REQUEST_URI&#125; [R=301,L]</div></pre></td></tr></table></figure>
 <ul>
 <li>防止图片盗链 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^$ </span><br><span class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^http://(www\.)?example\.com/ [NC] </span><br><span class="line">RewriteRule \.(gif|jpg|png)$ - [F]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^$ </div><div class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^http://(www\.)?example\.com/ [NC] </div><div class="line">RewriteRule \.(gif|jpg|png)$ - [F]</div></pre></td></tr></table></figure>
 <p>如果{HTTP_REFERER}值不为空，或者不是来自你自己的域名，这个规则用[F]FLAG阻止以gif|jpg|png 结尾的URL<br>如果对这种盗链你是坚决鄙视的，你还可以改变图片，让访问盗链网站的用户知道该网站正在盗用你的图片。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^$ </span><br><span class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^http://(www\.)?example\.com/.*$ [NC] </span><br><span class="line">RewriteRule \.(gif|jpg|png)$ http://www.example.com/hotlinked.gif [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^$ </div><div class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^http://(www\.)?example\.com/.*$ [NC] </div><div class="line">RewriteRule \.(gif|jpg|png)$ http://www.example.com/hotlinked.gif [R=301,L]</div></pre></td></tr></table></figure>
 <p>除了阻止图片盗链链接，以上规则将其盗链的图片全部替换成了你设置的图片。<br>你还可以阻止特定域名盗链你的图片： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^http://(www\.)?leech_site\.com/ [NC] </span><br><span class="line">RewriteRule \.(gif|jpg|png)$ - [F,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^http://(www\.)?leech_site\.com/ [NC] </div><div class="line">RewriteRule \.(gif|jpg|png)$ - [F,L]</div></pre></td></tr></table></figure>
 <p>这个规则将阻止域名黑名单上所有的图片链接请求。<br>当然以上这些规则都是以{HTTP_REFERER}获取域名为基础的，如果你想改用成IP地址，用{REMOTE_ADDR}就可以了。 </p>
 <ul>
 <li>如果文件不存在重定向到404页面</li>
 </ul>
 <p>如果你的主机没有提供404页面重定向服务，那么我们自己创建。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f </span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-d </span><br><span class="line">RewriteRule .? /404.php [L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f </div><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-d </div><div class="line">RewriteRule .? /404.php [L]</div></pre></td></tr></table></figure>
 <p>这里-f匹配的是存在的文件名，-d匹配的存在的路径名。这段代码在进行404重定向之前，会判断你的文件名以及路径名是否存在。你还可以在404页面上加一个?url=$1参数： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteRule ^/?(.*)$ /404.php?url=$1 [L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RewriteRule ^/?(.*)$ /404.php?url=$1 [L]</div></pre></td></tr></table></figure>
 <p>这样，你的404页面就可以做一些其他的事情，例如默认信心，发一个邮件提醒，加一个搜索，等等。 </p>
 <ul>
 <li>重命名目录 </li>
 </ul>
 <p>如果你想在网站上重命名目录，试试这个： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteRule ^/?old_directory/([a-z/.]+)$ new_directory/$1 [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RewriteRule ^/?old_directory/([a-z/.]+)$ new_directory/$1 [R=301,L]</div></pre></td></tr></table></figure>
 <p>在规则里我添加了一个“.”（注意不是代表得所有字符，前面有转义符）来匹配文件的后缀名。 </p>
 <ul>
 <li>将.html后缀名转换成.php </li>
 </ul>
 <p>前提是.html文件能继续访问的情况下，更新你的网站链接。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteRule ^/?([a-z/]+)\.html$ $1.php [L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RewriteRule ^/?([a-z/]+)\.html$ $1.php [L]</div></pre></td></tr></table></figure>
 <p>这不是一个网页重定向，所以访问者是不可见的。让他作为一个永久重定向（可见的），将FLAG修改[R=301,L]。 </p>
 <ul>
 <li>创建无文件后缀名链接 </li>
 </ul>
 <p>如果你想使你的PHP网站的链接更加简洁易记－或者隐藏文件的后缀名，试试这个: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteRule ^/?([a-z]+)$ $1.php [L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RewriteRule ^/?([a-z]+)$ $1.php [L]</div></pre></td></tr></table></figure>
 <p>如果网站混有PHP以及HTML文件，你可以用RewriteCond先判断该后缀的文件是否存在，然后进行替换： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125;.php -f </span><br><span class="line">RewriteRule ^/?([a-zA-Z0-9]+)$ $1.php [L] </span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125;.html -f </span><br><span class="line">RewriteRule ^/?([a-zA-Z0-9]+)$ $1.html [L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125;.php -f </div><div class="line">RewriteRule ^/?([a-zA-Z0-9]+)$ $1.php [L] </div><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125;.html -f </div><div class="line">RewriteRule ^/?([a-zA-Z0-9]+)$ $1.html [L]</div></pre></td></tr></table></figure>
 <p>如果文件是以.php为后缀，这条规则将被执行。 </p>
 <ul>
 <li>检查查询变量里的特定参数 </li>
 </ul>
 <p>如果在URL里面有一个特殊的参数，你可用RewriteCond鉴别其是否存在： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;QUERY_STRING&#125; !uniquekey= </span><br><span class="line">RewriteRule ^/?script_that_requires_uniquekey\.php$ other_script.php [QSA,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;QUERY_STRING&#125; !uniquekey= </div><div class="line">RewriteRule ^/?script_that_requires_uniquekey\.php$ other_script.php [QSA,L]</div></pre></td></tr></table></figure>
 <p>以上规则将检查{QUERY_STRING}里面的uniquekey参数是否存在，如果{REQUEST_URI}值为script_that_requires_uniquekey，将会定向到新的URL。 </p>
 <ul>
 <li>删除查询变量</li>
@@ -378,7 +376,7 @@ ga('send', 'pageview');
 </ul>
 <p>如果这就是我们当前正在运行的URLs：/index.php?id=nnnn。我们非常希望将其更改成/nnnn并且让搜索引擎以新格式展现。首先，我们为了让搜索引擎更新成新的，得将旧的URLs重定向到新的格式，但是，我们还得保证以前的index.php照样能够运行。是不是被我搞迷糊了？ </p>
 <p>实现以上功能，诀窍就在于在查询变量中加了一个访问者看不到的标记符“marker”。我们只将查询变量中没有出现“marker”标记的链接进行重定向，然后将原有的链接替换成新的格式，并且通过[QSA]FLAG在已有的参数加一个“marker”标记。以下为实现的方式： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;QUERY_STRING&#125; !marker </span><br><span class="line">RewriteCond %&#123;QUERY_STRING&#125; id=([-a-zA-Z0-9_+]+) </span><br><span class="line">RewriteRule ^/?index\.php$ %1? [R=301,L] </span><br><span class="line">RewriteRule ^/?([-a-zA-Z0-9_+]+)$ index.php?marker &amp;id=$1 [L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;QUERY_STRING&#125; !marker </div><div class="line">RewriteCond %&#123;QUERY_STRING&#125; id=([-a-zA-Z0-9_+]+) </div><div class="line">RewriteRule ^/?index\.php$ %1? [R=301,L] </div><div class="line">RewriteRule ^/?([-a-zA-Z0-9_+]+)$ index.php?marker &amp;id=$1 [L]</div></pre></td></tr></table></figure>
 <p>这里，原先的URL：<code>http://www.example.com/index.php?id=nnnn</code> 不包含marker，所以被第一个规则永久重定向到<code>http://www.example.com/nnnn</code>，第二个规则将<code>http://www.example.com/nnnn</code>反定向到<code>http://www.example.com/index.php?marker &amp;id=nnnn</code>，并且加了marker以及id=nnnn两个变量，最后mod_rewrite就开始进行处理过程。</p>
 <p>第二次匹配，marker被匹配，所以忽略第一条规则，这里有一个“.”字符会出现在<code>http://www.example.com/index.php?marker &amp;id=nnnn</code>中，所以第二条规则也会被忽略，这样我们就完成了。</p>
 <p>注意，这个解决方案要求Apache的一些扩展功能，所以如果你的网站放于在共享主机中会遇到很多障碍。 </p>
@@ -386,16 +384,16 @@ ga('send', 'pageview');
 <li>保证安全服务启用 </li>
 </ul>
 <p>Apache可以用两种方法辨别你是否开启了安全服务，分别引用{HTTPS}和{SERVER_PORT}变量： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;REQUEST_URI&#125; ^secure_page\.php$ </span><br><span class="line">RewriteCond %&#123;HTTPS&#125; !on </span><br><span class="line">RewriteRule ^/?(secure_page\.php)$ https://www.example.com/$1 [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;REQUEST_URI&#125; ^secure_page\.php$ </div><div class="line">RewriteCond %&#123;HTTPS&#125; !on </div><div class="line">RewriteRule ^/?(secure_page\.php)$ https://www.example.com/$1 [R=301,L]</div></pre></td></tr></table></figure>
 <p>以上规则测试{REQUEST_URI}值是否等于我们的安全页代码，并且{HTTPS}不等于on。如果这两个条件同时满足，请求将被重定向到安全服务URI.<br>另外你可用{SERVER_PORT}做同样的测试，443是常用的安全服务端口 。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;REQUEST_URI&#125; ^secure_page\.php$ </span><br><span class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$ </span><br><span class="line">RewriteRule ^/?(secure_page\.php)$ https://www.example.com/$1 [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;REQUEST_URI&#125; ^secure_page\.php$ </div><div class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$ </div><div class="line">RewriteRule ^/?(secure_page\.php)$ https://www.example.com/$1 [R=301,L]</div></pre></td></tr></table></figure>
 <ul>
 <li>在特定的页面上强制执行安全服务 </li>
 </ul>
 <p>遇到同一个服务器根目录下分别有一个安全服务域名和一个非安全服务域名，所以你就需要用RewriteCond 判断安全服务端口是否占用，并且只将以下列表的页面要求为安全服务:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$ </span><br><span class="line">RewriteRule ^/?(page1|page2|page3|page4|page5)$ https://www.example.com/%1 [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$ </div><div class="line">RewriteRule ^/?(page1|page2|page3|page4|page5)$ https://www.example.com/%1 [R=301,L]</div></pre></td></tr></table></figure>
 <p>以下是怎样将没有设置成安全服务的页面返回到80端口： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RewriteCond %&#123; SERVER_PORT &#125; ^443$ </span><br><span class="line">RewriteRule !^/?(page6|page7|page8|page9)$ http://www.example.com%&#123;REQUEST_URI&#125; [R=301,L]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RewriteCond %&#123; SERVER_PORT &#125; ^443$ </div><div class="line">RewriteRule !^/?(page6|page7|page8|page9)$ http://www.example.com%&#123;REQUEST_URI&#125; [R=301,L]</div></pre></td></tr></table></figure>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Apache的mod_rewrite模块，不仅会用在SEO以及URLs用户友好方面，还会用到某些重要的重定向工作中，如果你想学习到更多，以下是我找到的一些网上资源： </p>
 <p>正则表达：</p>
 <ul>
