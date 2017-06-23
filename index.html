@@ -92,7 +92,7 @@ ga('send', 'pageview');
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -240,35 +240,35 @@ ga('send', 'pageview');
 <p>如果你想了解 Javascript 引入 ArrayBuffer 和 SharedArrayBuffer 的原因，那么你最好知道一些内存管理的知识。</p>
 <p>你可以把内存想象成一些盒子。它们可以是办公室里面的快递箱，也可以是小宝贝们装玩具的盒子。</p>
 <p>如果你想把玩具留给其他小朋友玩，那么你可以先把这个玩具放进这个盒子里。</p>
-<p><a href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/06/01_01.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/06/01_01.png" alt="image"></p>
 <p>每个盒子有一个编号，那就是内存地址。有了这个编号，其他人就可以根据它来找到这个盒子。</p>
 <p>这些盒子都一样大小，可以存储一定容量的信息。盒子的大小是根据计算机来确定的，平时我们称它为字节。通常字节为 32-bits or 64-bits。在这篇文章，为了更直观的展示，我用 8-bits(位)来表示。</p>
-<p><a href="https://hacks.mozilla.org/files/2017/06/01_02-768x185.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://hacks.mozilla.org/files/2017/06/01_02-768x185.png" alt="image"></p>
 <p>如果我们想把数字 2 存到这些盒子里，非常简单，把数字转<a href="https://www.khanacademy.org/math/algebra-home/alg-intro-to-algebra/algebra-alternate-number-bases/v/decimal-to-binary" target="_blank" rel="external">换成二进制</a>即可。</p>
-<p><a href="https://hacks.mozilla.org/files/2017/06/01_03-768x351.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://hacks.mozilla.org/files/2017/06/01_03-768x351.png" alt="image"></p>
 <p>那么问题来了，如果我们想把一个字母存进区，比如字母H，该怎么办呢？</p>
-<p>答案是，我们可以用数字的方式来代表字母，所以我们需要用 UTF-8 等格式编码对字母进行编译。然后，再转换成相应的数字，原理就像下面的编译转盘一样。这样我们就可以存储一个字母啦。<br><a href="https://hacks.mozilla.org/files/2017/06/01_04-768x425.png" target="_blank" rel="external">!image</a></p>
+<p>答案是，我们可以用数字的方式来代表字母，所以我们需要用 UTF-8 等格式编码对字母进行编译。然后，再转换成相应的数字，原理就像下面的编译转盘一样。这样我们就可以存储一个字母啦。<br><img src="https://hacks.mozilla.org/files/2017/06/01_04-768x425.png" alt="image"></p>
 <h4 id="自动化的内存管理"><a href="#自动化的内存管理" class="headerlink" title="自动化的内存管理"></a>自动化的内存管理</h4><p>一般情况下，当你写 JavaScript 代码的时候，你并不需要考虑到内存，更不需要直接操作内存，那谁在帮你完成呢？答案是：JS引擎。它会在你和内存之间搭起一座桥梁，帮助你管理内存。</p>
-<p><a href="https://hacks.mozilla.org/files/2017/06/01_05-768x570.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://hacks.mozilla.org/files/2017/06/01_05-768x570.png" alt="image"></p>
 <p>举个例子，当我们用 React 来创建一个变量的时候。</p>
-<p><a href="https://hacks.mozilla.org/files/2017/06/01_05-768x570.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://hacks.mozilla.org/files/2017/06/01_05-768x570.png" alt="image"></p>
 <p>JS 引擎会将变量进行编译，将其转化成二进制方式。</p>
-<p><a href="https://hacks.mozilla.org/files/2017/06/01_07-768x568.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://hacks.mozilla.org/files/2017/06/01_07-768x568.png" alt="image"></p>
 <p>并且 JS 引擎会在内存中找到一个区域用来存储编译好的变量。通常这个过程叫内存分配。</p>
-<p><a href="https://hacks.mozilla.org/files/2017/06/01_08-768x564.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://hacks.mozilla.org/files/2017/06/01_08-768x564.png" alt="image"></p>
 <p>内存分配结束以后，JS 引擎还会持续监听这个变量访问情况。如果这个变量不再被访问，那么内存会将这个变量占有的空间清空，清空以后的空间可以用来存放新的变量。</p>
-<p><a href="https://hacks.mozilla.org/files/2017/06/01_09-768x582.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://hacks.mozilla.org/files/2017/06/01_09-768x582.png" alt="image"></p>
 <p>JS 引擎处理将各种类型的变量分配进内存，当这些变量不再被访问并且将其从内存中清空的过程，我们称之为垃圾回收。</p>
 <p>像 JavaScript 不直接操作内存的这类语言，通常我们称它们为内存管理语言。</p>
 <p>这种自动化的内存管理的机制对开发者来说更为简单方便。但是这种方式也有不足的地方，那就是会加大内存开销，有时候而这些开销会对代码性能产生不可预知的影响。</p>
 <h4 id="手动内存管理"><a href="#手动内存管理" class="headerlink" title="手动内存管理"></a>手动内存管理</h4><p>手动调度和自动管理内存的语言有较大区别。举个例子，让我们来看下，如果用 C 语言编写的话，React会如何工作？（现在<a href="https://www.youtube.com/watch?v=3GHJ4cbxsVQ" target="_blank" rel="external">可以</a>用<a href="https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly/" target="_blank" rel="external">WebAssembly</a>来实现哟）</p>
 <p>C 语言没有 JavaScript 在内存中的抽象层。相反，你直接操作内存，比如读写操作。</p>
-<p><a href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/06/01_10.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/06/01_10.png" alt="image"></p>
 <p>当你编译 C 或者 WebAssembly 语言的时候，我们使用的工具会加入一些辅助代码。比如，用来编码或者解码。这些代码我们通常称之为运行环境。运行环境对于 C 或者 WebAssembly 的作用类似于 JS 引擎对 Javascript 作用.</p>
-<p><a href="https://hacks.mozilla.org/files/2017/06/01_11-768x555.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://hacks.mozilla.org/files/2017/06/01_11-768x555.png" alt="image"></p>
 <p>手动调度内存的语言，有一个特性，那就是运行环境不包含垃圾回收机制。</p>
 <p>但是不要太担心，那并不是意味着开发者只能靠自己，什么事情都得亲历亲为。事实上，你仍然可以从运行环境中得到一些帮助。比如，C 语言中，开发环境会一直监控内存的使用状态，将空闲的空间提供给新的变量。</p>
-<p><a href="https://hacks.mozilla.org/files/2017/06/01_12-768x552.png" target="_blank" rel="external">!image</a></p>
+<p><img src="https://hacks.mozilla.org/files/2017/06/01_12-768x552.png" alt="image"></p>
 <p>在代码过程中，你可以使用 函数 malloc (memory allocate 简称)，要求运行环境从内存空闲列表中找到适合存储你数据的地址。内存空闲列表会把刚占用的区域地址删除掉。当这些数据使用完毕，你又可以调用 deallocate  方法，将占用的内存释放。这个时候内存空闲列表又会加上刚刚占用的区域。</p>
 <p>写代码过程中，什么时候调用分配以及回收内存这些函数，因为都是开发者自己决定的，所以我们称之为手动内存管理。</p>
 <p>作为开发者，搞清楚什么时候去清理内存不同区域是一件很困难的事情。如果你在错误的阶段去清理，很有可能会导致 bug 甚至一些安全漏洞。反过来，要是不清理，又会导致内存泄漏。</p>
