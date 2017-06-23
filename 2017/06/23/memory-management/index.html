@@ -7,13 +7,13 @@
   <meta name="baidu-site-verification" content="7SfBcT8C1U" />
   <title>三分钟了解内存管理 | 丢了</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文由 六不准 翻译。原文出处：Lin Clark 此篇文章是以下系列文章中的第一篇：  三分钟了解内存管理 A cartoon intro to ArrayBuffers and SharedArrayBuffers Avoiding race conditions in SharedArrayBuffers with Atomics  如果你想了解 Javascript 引入 ArrayBuf">
+  <meta name="description" content="本文由 六不准 翻译。原文出处：A crash course in memory management 此篇文章是以下系列文章中的第一篇：  三分钟了解内存管理 A cartoon intro to ArrayBuffers and SharedArrayBuffers Avoiding race conditions in SharedArrayBuffers with Atomics  如果你">
 <meta name="keywords" content="memory">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三分钟了解内存管理">
 <meta property="og:url" content="http://diule.site/2017/06/23/memory-management/index.html">
 <meta property="og:site_name" content="丢了">
-<meta property="og:description" content="本文由 六不准 翻译。原文出处：Lin Clark 此篇文章是以下系列文章中的第一篇：  三分钟了解内存管理 A cartoon intro to ArrayBuffers and SharedArrayBuffers Avoiding race conditions in SharedArrayBuffers with Atomics  如果你想了解 Javascript 引入 ArrayBuf">
+<meta property="og:description" content="本文由 六不准 翻译。原文出处：A crash course in memory management 此篇文章是以下系列文章中的第一篇：  三分钟了解内存管理 A cartoon intro to ArrayBuffers and SharedArrayBuffers Avoiding race conditions in SharedArrayBuffers with Atomics  如果你">
 <meta property="og:image" content="https://hacks.mozilla.org/files/2017/06/01_01-500x353.png">
 <meta property="og:image" content="https://hacks.mozilla.org/files/2017/06/01_02-500x121.png">
 <meta property="og:image" content="https://hacks.mozilla.org/files/2017/06/01_03-500x229.png">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="https://hacks.mozilla.org/files/2017/06/01_10-500x360.png">
 <meta property="og:image" content="https://hacks.mozilla.org/files/2017/06/01_11-500x361.png">
 <meta property="og:image" content="https://hacks.mozilla.org/files/2017/06/01_12-500x360.png">
-<meta property="og:updated_time" content="2017-06-23T14:30:24.685Z">
+<meta property="og:updated_time" content="2017-06-23T14:38:21.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三分钟了解内存管理">
-<meta name="twitter:description" content="本文由 六不准 翻译。原文出处：Lin Clark 此篇文章是以下系列文章中的第一篇：  三分钟了解内存管理 A cartoon intro to ArrayBuffers and SharedArrayBuffers Avoiding race conditions in SharedArrayBuffers with Atomics  如果你想了解 Javascript 引入 ArrayBuf">
+<meta name="twitter:description" content="本文由 六不准 翻译。原文出处：A crash course in memory management 此篇文章是以下系列文章中的第一篇：  三分钟了解内存管理 A cartoon intro to ArrayBuffers and SharedArrayBuffers Avoiding race conditions in SharedArrayBuffers with Atomics  如果你">
 <meta name="twitter:image" content="https://hacks.mozilla.org/files/2017/06/01_01-500x353.png">
   
     <link rel="alternative" href="/atom.xml" title="丢了" type="application/atom+xml">
@@ -257,7 +257,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文由 <a href="http://http://diule.site/" target="_blank" rel="external">六不准</a> 翻译。<br>原文出处：<a href="https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/" target="_blank" rel="external">Lin Clark</a></p>
+        <p>本文由 <a href="http://http://diule.site/" target="_blank" rel="external">六不准</a> 翻译。<br>原文出处：<a href="https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/" target="_blank" rel="external">A crash course in memory management</a></p>
 <p>此篇文章是以下系列文章中的第一篇：</p>
 <ul>
 <li>三分钟了解内存管理</li>
