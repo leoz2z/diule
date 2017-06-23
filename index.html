@@ -92,7 +92,7 @@ ga('send', 'pageview');
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -242,12 +242,13 @@ ga('send', 'pageview');
 <p>如果你想把玩具留给其他小朋友玩，那么你可以先把这个玩具放进这个盒子里。</p>
 <p><img src="https://hacks.mozilla.org/files/2017/06/01_01-500x353.png" alt="image"></p>
 <p>每个盒子有一个编号，那就是内存地址。有了这个编号，其他人就可以根据它来找到这个盒子。</p>
-<p>这些盒子都一样大小，可以存储一定容量的信息。盒子的大小是根据计算机来确定的，平时我们称它为字节。通常字节为 32-bits or 64-bits。在这篇文章，为了更直观的展示，我用 8-bits(位)来表示。</p>
+<p>这些盒子都一样大小，可以存储一定容量的信息。盒子的大小是根据计算机来确定的，平时我们称它为字长。通常字长为 32-bits or 64-bits。在这篇文章，为了更直观的展示，我用 8-bits(位)来表示。</p>
 <p><img src="https://hacks.mozilla.org/files/2017/06/01_02-500x121.png" alt="image"></p>
 <p>如果我们想把数字 2 存到这些盒子里，非常简单，把数字转<a href="https://www.khanacademy.org/math/algebra-home/alg-intro-to-algebra/algebra-alternate-number-bases/v/decimal-to-binary" target="_blank" rel="external">换成二进制</a>即可。</p>
 <p><img src="https://hacks.mozilla.org/files/2017/06/01_03-500x229.png" alt="image"></p>
 <p>那么问题来了，如果我们想把一个字母存进区，比如字母H，该怎么办呢？</p>
-<p>答案是，我们可以用数字的方式来代表字母，所以我们需要用 UTF-8 等格式编码对字母进行编译。然后，再转换成相应的数字，原理就像下面的编译转盘一样。这样我们就可以存储一个字母啦。<br><img src="https://hacks.mozilla.org/files/2017/06/01_04-500x277.png" alt="image"></p>
+<p>答案是，我们可以用数字的方式来代表字母，所以我们需要用 UTF-8 等编码格式对字母进行编码。然后，再转换成相应的数字，原理就像下面的编码转盘一样。这样我们就可以存储一个字母啦。<br><img src="https://hacks.mozilla.org/files/2017/06/01_04-500x277.png" alt="image"></p>
+<p>当我们想把已编码的 H 从盒子里面取出来的时候，得需要一个解码器将其转换回字母 H 。</p>
 <h3 id="自动化的内存管理"><a href="#自动化的内存管理" class="headerlink" title="自动化的内存管理"></a>自动化的内存管理</h3><p>一般情况下，当你写 JavaScript 代码的时候，你并不需要考虑到内存，更不需要直接操作内存，那谁在帮你完成呢？答案是：JS引擎。它会在你和内存之间搭起一座桥梁，帮助你管理内存。</p>
 <p><img src="https://hacks.mozilla.org/files/2017/06/01_05-500x371.png" alt="image"></p>
 <p>举个例子，当我们用 React 来创建一个变量的时候。</p>
@@ -258,8 +259,8 @@ ga('send', 'pageview');
 <p><img src="https://hacks.mozilla.org/files/2017/06/01_08-500x367.png" alt="image"></p>
 <p>内存分配结束以后，JS 引擎还会持续监听这个变量访问情况。如果这个变量不再被访问，那么内存会将这个变量占有的空间清空，清空以后的空间可以用来存放新的变量。</p>
 <p><img src="https://hacks.mozilla.org/files/2017/06/01_09-500x379.png" alt="image"></p>
-<p>JS 引擎处理将各种类型的变量分配进内存，当这些变量不再被访问并且将其从内存中清空的过程，我们称之为垃圾回收。</p>
-<p>像 JavaScript 不直接操作内存的这类语言，通常我们称它们为内存管理语言。</p>
+<p>JS 引擎处理将各种类型的变量（字符串，对象和其他类型的值）分配进内存，当这些变量不再被访问并且将其从内存中清空的过程，我们称之为垃圾回收。</p>
+<p>像 JavaScript 不直接操作内存的这类语言，通常我们称它们为内存自动管理语言。</p>
 <p>这种自动化的内存管理的机制对开发者来说更为简单方便。但是这种方式也有不足的地方，那就是会加大内存开销，有时候而这些开销会对代码性能产生不可预知的影响。</p>
 <h3 id="手动内存管理"><a href="#手动内存管理" class="headerlink" title="手动内存管理"></a>手动内存管理</h3><p>手动调度和自动管理内存的语言有较大区别。举个例子，让我们来看下，如果用 C 语言编写的话，React会如何工作？（现在<a href="https://www.youtube.com/watch?v=3GHJ4cbxsVQ" target="_blank" rel="external">可以</a>用<a href="https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly/" target="_blank" rel="external">WebAssembly</a>来实现哟）</p>
 <p>C 语言没有 JavaScript 在内存中的抽象层。相反，你直接操作内存，比如读写操作。</p>
@@ -1087,77 +1088,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-wechat-2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/23/wechat-2/" class="article-date">
-  	<time datetime="2016-11-23T14:23:09.000Z" itemprop="datePublished">2016-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/23/wechat-2/">六不准的微信小程序开发指南二</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。"><a href="#上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。" class="headerlink" title="上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。"></a>上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。</h3><h4 id="微信小程序API源码下载"><a href="#微信小程序API源码下载" class="headerlink" title="微信小程序API源码下载"></a>微信小程序API源码下载</h4><ul>
-<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/demo.html?t=20161122" target="_blank" rel="external">下载页面</a></li>
-<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/demo/demo.zip?t=20161122" target="_blank" rel="external">直接下载(可能失效)</a></li>
-</ul>
-<h3 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h3><ul>
-<li>解压zip包到你的工程目录，例如wechatTest</li>
-<li>打开微信web开发者工具，创建新项目。<ul>
-<li>输入AppID，若有</li>
-<li>输入项目名称，例如wechatTest</li>
-<li>项目目录，选择你的工程目录，例如wechatTest文件夹</li>
-<li>注意：请不要勾选 <code>在当前目录中创建 quick start 项目</code> 选项<br><img src="http://ohgp0qsci.bkt.clouddn.com/wechat1.png" alt="创建项目"></li>
-</ul>
-</li>
-<li>其实，到这一步，就已经可以看到微信小程序的组件和接口了<br><img src="http://ohgp0qsci.bkt.clouddn.com/wechat2.png?imageView/2/w/700" alt="组件接口界面"></li>
-</ul>
-<h4 id="下一章主要内容：模仿一个流行的应用做个实例"><a href="#下一章主要内容：模仿一个流行的应用做个实例" class="headerlink" title="下一章主要内容：模仿一个流行的应用做个实例"></a>下一章主要内容：模仿一个流行的应用做个实例</h4>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-wechat-1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1208,6 +1138,77 @@ ga('send', 'pageview');
 </li>
 </ul>
 <h4 id="下一章主要内容：官方的实例如何在本地运行起来"><a href="#下一章主要内容：官方的实例如何在本地运行起来" class="headerlink" title="下一章主要内容：官方的实例如何在本地运行起来"></a>下一章主要内容：官方的实例如何在本地运行起来</h4>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-wechat-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/23/wechat-2/" class="article-date">
+  	<time datetime="2016-11-23T14:23:09.000Z" itemprop="datePublished">2016-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/23/wechat-2/">六不准的微信小程序开发指南二</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。"><a href="#上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。" class="headerlink" title="上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。"></a>上一章，我们主要介绍了一些微信小程序的链接信息，比如官方文档以及开发者工具等等。本章主要讲如何把微信小程序的官方API在本地运行起来，这样大家在做自己的小程序的时候就可以看到有哪些组件和接口可以调用。这些也是开发一个微信小程序的基础。</h3><h4 id="微信小程序API源码下载"><a href="#微信小程序API源码下载" class="headerlink" title="微信小程序API源码下载"></a>微信小程序API源码下载</h4><ul>
+<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/demo.html?t=20161122" target="_blank" rel="external">下载页面</a></li>
+<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/demo/demo.zip?t=20161122" target="_blank" rel="external">直接下载(可能失效)</a></li>
+</ul>
+<h3 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h3><ul>
+<li>解压zip包到你的工程目录，例如wechatTest</li>
+<li>打开微信web开发者工具，创建新项目。<ul>
+<li>输入AppID，若有</li>
+<li>输入项目名称，例如wechatTest</li>
+<li>项目目录，选择你的工程目录，例如wechatTest文件夹</li>
+<li>注意：请不要勾选 <code>在当前目录中创建 quick start 项目</code> 选项<br><img src="http://ohgp0qsci.bkt.clouddn.com/wechat1.png" alt="创建项目"></li>
+</ul>
+</li>
+<li>其实，到这一步，就已经可以看到微信小程序的组件和接口了<br><img src="http://ohgp0qsci.bkt.clouddn.com/wechat2.png?imageView/2/w/700" alt="组件接口界面"></li>
+</ul>
+<h4 id="下一章主要内容：模仿一个流行的应用做个实例"><a href="#下一章主要内容：模仿一个流行的应用做个实例" class="headerlink" title="下一章主要内容：模仿一个流行的应用做个实例"></a>下一章主要内容：模仿一个流行的应用做个实例</h4>
       
     </div>
     
