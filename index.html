@@ -129,7 +129,7 @@ ga('send', 'pageview');
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/cssweekly/" style="font-size: 10px;">cssweekly</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/weex/" style="font-size: 10px;">weex</a> <a href="/tags/丢了/" style="font-size: 10px;">丢了</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/微信小程序/" style="font-size: 20px;">微信小程序</a> <a href="/tags/生活杂记/" style="font-size: 10px;">生活杂记</a>
+						<a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/cssweekly/" style="font-size: 10px;">cssweekly</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/memory/" style="font-size: 10px;">memory</a> <a href="/tags/weex/" style="font-size: 10px;">weex</a> <a href="/tags/丢了/" style="font-size: 10px;">丢了</a> <a href="/tags/开发环境/" style="font-size: 10px;">开发环境</a> <a href="/tags/微信小程序/" style="font-size: 20px;">微信小程序</a> <a href="/tags/生活杂记/" style="font-size: 10px;">生活杂记</a>
 					</div>
 				</section>
 				
@@ -203,6 +203,109 @@ ga('send', 'pageview');
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-memory-management" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/23/memory-management/" class="article-date">
+  	<time datetime="2017-06-23T13:52:04.000Z" itemprop="datePublished">2017-06-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/23/memory-management/">三分钟了解内存管理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文由 <a href="http://http://diule.site/" target="_blank" rel="external">六不准</a> 翻译。<br>原文出处：<a href="https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/" target="_blank" rel="external">Lin Clark</a></p>
+<p>此篇文章是以下系列文章中的第一篇：</p>
+<ul>
+<li>三分钟了解内存管理</li>
+<li><a href="https://hacks.mozilla.org/2017/06/a-cartoon-intro-to-arraybuffers-and-sharedarraybuffers/" target="_blank" rel="external">A cartoon intro to ArrayBuffers and SharedArrayBuffers</a></li>
+<li><a href="https://hacks.mozilla.org/2017/06/avoiding-race-conditions-in-sharedarraybuffers-with-atomics/" target="_blank" rel="external">Avoiding race conditions in SharedArrayBuffers with Atomics</a></li>
+</ul>
+<p>如果你想了解 Javascript 引入 ArrayBuffer 和 SharedArrayBuffer 的原因，那么你最好知道一些内存管理的知识。</p>
+<p>你可以把内存想象成一些盒子。它们可以是办公室里面的快递箱，也可以是小宝贝们装玩具的盒子。</p>
+<p>如果你想把玩具留给其他小朋友玩，那么你可以先把这个玩具放进这个盒子里。</p>
+<p><a href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/06/01_01.png" target="_blank" rel="external">!image</a></p>
+<p>每个盒子有一个编号，那就是内存地址。有了这个编号，其他人就可以根据它来找到这个盒子。</p>
+<p>这些盒子都一样大小，可以存储一定容量的信息。盒子的大小是根据计算机来确定的，平时我们称它为字节。通常字节为 32-bits or 64-bits。在这篇文章，为了更直观的展示，我用 8-bits(位)来表示。</p>
+<p><a href="https://hacks.mozilla.org/files/2017/06/01_02-768x185.png" target="_blank" rel="external">!image</a></p>
+<p>如果我们想把数字 2 存到这些盒子里，非常简单，把数字转<a href="https://www.khanacademy.org/math/algebra-home/alg-intro-to-algebra/algebra-alternate-number-bases/v/decimal-to-binary" target="_blank" rel="external">换成二进制</a>即可。</p>
+<p><a href="https://hacks.mozilla.org/files/2017/06/01_03-768x351.png" target="_blank" rel="external">!image</a></p>
+<p>那么问题来了，如果我们想把一个字母存进区，比如字母H，该怎么办呢？</p>
+<p>答案是，我们可以用数字的方式来代表字母，所以我们需要用 UTF-8 等格式编码对字母进行编译。然后，再转换成相应的数字，原理就像下面的编译转盘一样。这样我们就可以存储一个字母啦。<br><a href="https://hacks.mozilla.org/files/2017/06/01_04-768x425.png" target="_blank" rel="external">!image</a></p>
+<h4 id="自动化的内存管理"><a href="#自动化的内存管理" class="headerlink" title="自动化的内存管理"></a>自动化的内存管理</h4><p>一般情况下，当你写 JavaScript 代码的时候，你并不需要考虑到内存，更不需要直接操作内存，那谁在帮你完成呢？答案是：JS引擎。它会在你和内存之间搭起一座桥梁，帮助你管理内存。</p>
+<p><a href="https://hacks.mozilla.org/files/2017/06/01_05-768x570.png" target="_blank" rel="external">!image</a></p>
+<p>举个例子，当我们用 React 来创建一个变量的时候。</p>
+<p><a href="https://hacks.mozilla.org/files/2017/06/01_05-768x570.png" target="_blank" rel="external">!image</a></p>
+<p>JS 引擎会将变量进行编译，将其转化成二进制方式。</p>
+<p><a href="https://hacks.mozilla.org/files/2017/06/01_07-768x568.png" target="_blank" rel="external">!image</a></p>
+<p>并且 JS 引擎会在内存中找到一个区域用来存储编译好的变量。通常这个过程叫内存分配。</p>
+<p><a href="https://hacks.mozilla.org/files/2017/06/01_08-768x564.png" target="_blank" rel="external">!image</a></p>
+<p>内存分配结束以后，JS 引擎还会持续监听这个变量访问情况。如果这个变量不再被访问，那么内存会将这个变量占有的空间清空，清空以后的空间可以用来存放新的变量。</p>
+<p><a href="https://hacks.mozilla.org/files/2017/06/01_09-768x582.png" target="_blank" rel="external">!image</a></p>
+<p>JS 引擎处理将各种类型的变量分配进内存，当这些变量不再被访问并且将其从内存中清空的过程，我们称之为垃圾回收。</p>
+<p>像 JavaScript 不直接操作内存的这类语言，通常我们称它们为内存管理语言。</p>
+<p>这种自动化的内存管理的机制对开发者来说更为简单方便。但是这种方式也有不足的地方，那就是会加大内存开销，有时候而这些开销会对代码性能产生不可预知的影响。</p>
+<h4 id="手动内存管理"><a href="#手动内存管理" class="headerlink" title="手动内存管理"></a>手动内存管理</h4><p>手动调度和自动管理内存的语言有较大区别。举个例子，让我们来看下，如果用 C 语言编写的话，React会如何工作？（现在<a href="https://www.youtube.com/watch?v=3GHJ4cbxsVQ" target="_blank" rel="external">可以</a>用<a href="https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly/" target="_blank" rel="external">WebAssembly</a>来实现哟）</p>
+<p>C 语言没有 JavaScript 在内存中的抽象层。相反，你直接操作内存，比如读写操作。</p>
+<p><a href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/06/01_10.png" target="_blank" rel="external">!image</a></p>
+<p>当你编译 C 或者 WebAssembly 语言的时候，我们使用的工具会加入一些辅助代码。比如，用来编码或者解码。这些代码我们通常称之为运行环境。运行环境对于 C 或者 WebAssembly 的作用类似于 JS 引擎对 Javascript 作用.</p>
+<p><a href="https://hacks.mozilla.org/files/2017/06/01_11-768x555.png" target="_blank" rel="external">!image</a></p>
+<p>手动调度内存的语言，有一个特性，那就是运行环境不包含垃圾回收机制。</p>
+<p>但是不要太担心，那并不是意味着开发者只能靠自己，什么事情都得亲历亲为。事实上，你仍然可以从运行环境中得到一些帮助。比如，C 语言中，开发环境会一直监控内存的使用状态，将空闲的空间提供给新的变量。</p>
+<p><a href="https://hacks.mozilla.org/files/2017/06/01_12-768x552.png" target="_blank" rel="external">!image</a></p>
+<p>在代码过程中，你可以使用 函数 malloc (memory allocate 简称)，要求运行环境从内存空闲列表中找到适合存储你数据的地址。内存空闲列表会把刚占用的区域地址删除掉。当这些数据使用完毕，你又可以调用 deallocate  方法，将占用的内存释放。这个时候内存空闲列表又会加上刚刚占用的区域。</p>
+<p>写代码过程中，什么时候调用分配以及回收内存这些函数，因为都是开发者自己决定的，所以我们称之为手动内存管理。</p>
+<p>作为开发者，搞清楚什么时候去清理内存不同区域是一件很困难的事情。如果你在错误的阶段去清理，很有可能会导致 bug 甚至一些安全漏洞。反过来，要是不清理，又会导致内存泄漏。</p>
+<p>这就是为什么很多现代语言都用自动化内存管理来避免一些人为的错误。但是这种方式会产生额外开销影响到性能。这个点会在<a href="https://hacks.mozilla.org/2017/06/a-cartoon-intro-to-arraybuffers-and-sharedarraybuffers/" target="_blank" rel="external">下一篇</a>文章来详细介绍。</p>
+<h4 id="关于作者-Lin-Clark"><a href="#关于作者-Lin-Clark" class="headerlink" title="关于作者 Lin Clark"></a>关于作者 <a href="http://code-cartoons.com/" target="_blank" rel="external">Lin Clark</a></h4><p>Lin 是 Mozilla 的一名工程师。她的工作领域有：JavaScript，WebAssembly，Rust，和 Servo，当然还会画一些可爱形象的关于代码的漫画。</p>
+<p><a href="http://code-cartoons.com/" target="_blank" rel="external">code-cartoons.com</a></p>
+<p><a href="http://twitter.com/linclark" target="_blank" rel="external">@linclark</a></p>
+<p><a href="https://hacks.mozilla.org/author/lclarkmozilla-com/" target="_blank" rel="external">作者的更多文章…</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memory/">memory</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-responsive-design-of-the-future-with-flexbox" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -924,10 +1027,10 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-weex" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-wechat-1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/11/23/weex/" class="article-date">
+      <a href="/2016/11/23/wechat-1/" class="article-date">
   	<time datetime="2016-11-23T14:23:09.000Z" itemprop="datePublished">2016-11-23</time>
 </a>
     </div>
@@ -941,7 +1044,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/23/weex/">weex开发踩过的坑</a>
+      <a class="article-title" href="/2016/11/23/wechat-1/">六不准的微信小程序开发指南一</a>
     </h1>
   
 
@@ -950,11 +1053,30 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="weex-is-not-defined"><a href="#weex-is-not-defined" class="headerlink" title="weex is not defined"></a>weex is not defined</h3><ul>
-<li>官方示例：”weex-vue-render”: “^0.11.2”,</li>
-<li>可运行版本：”weex-vue-render”: “^0.2.0”</li>
+        <h3 id="本章主要讲微信小程序开发前的准备工作"><a href="#本章主要讲微信小程序开发前的准备工作" class="headerlink" title="本章主要讲微信小程序开发前的准备工作"></a>本章主要讲微信小程序开发前的准备工作</h3><h4 id="微信小程序官方链接"><a href="#微信小程序官方链接" class="headerlink" title="微信小程序官方链接"></a>微信小程序官方链接</h4><ul>
+<li><p>网上找了好多资源，包括微信公众平台官网，很难发现微信小程序的官方文档，估计是还没有大规模推广有关。找现在终于将官方的文档地址找到，提供出来，一睹庐山真面目。</p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com" target="_blank" rel="external">微信公众平台</a>：<a href="https://mp.weixin.qq.com" target="_blank" rel="external">https://mp.weixin.qq.com</a></p>
+</li>
+<li><p>公众平台小程序<a href="https://mp.weixin.qq.com/wxopen/waregister?action=step1" target="_blank" rel="external">注册地址</a>：<a href="https://mp.weixin.qq.com/wxopen/waregister?action=step1" target="_blank" rel="external">https://mp.weixin.qq.com/wxopen/waregister?action=step1</a></p>
+<ul>
+<li>现阶段用户信息登记仅开发给企业和组织，所以你想跑一个完整的小程序，建议还是已一个存在的企业身份进行注册。如果做为开发者，仅想了解微信小程序的开发方式以及API，可以直接下载开发者工具体验。</li>
 </ul>
-<h4 id="下一章主要内容：模仿一个流行的应用做个实例"><a href="#下一章主要内容：模仿一个流行的应用做个实例" class="headerlink" title="下一章主要内容：模仿一个流行的应用做个实例"></a>下一章主要内容：模仿一个流行的应用做个实例</h4>
+</li>
+<li><p>微信小程序开发者工具<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=20161122" target="_blank" rel="external">下载地址</a>：<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=20161122" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=20161122</a></p>
+</li>
+</ul>
+<h4 id="详细的小程序产品以及功能介绍"><a href="#详细的小程序产品以及功能介绍" class="headerlink" title="详细的小程序产品以及功能介绍"></a>详细的小程序产品以及功能介绍</h4><ul>
+<li><p>只要注册成功以后进入到微信小程序网站，页面右上角有四个栏目，有非常详细的介绍，本文的多数链接也摘自于此，大家可以好好阅读，本文就不再赘述。</p>
+<ul>
+<li>注册，发布，设置相关：<a href="https://mp.weixin.qq.com/debug/wxadoc/introduction/index.html?t=20161122" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/introduction/index.html?t=20161122</a></li>
+<li>交互视觉相关：<a href="https://mp.weixin.qq.com/debug/wxadoc/design/index.html?t=20161107" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/design/index.html?t=20161107</a></li>
+<li>开发相关：<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/index.html?t=20161109" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/dev/index.html?t=20161109</a></li>
+<li>运营相关：<a href="https://mp.weixin.qq.com/debug/wxadoc/product/index.html?t=20161122" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/product/index.html?t=20161122</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="下一章主要内容：官方的实例如何在本地运行起来"><a href="#下一章主要内容：官方的实例如何在本地运行起来" class="headerlink" title="下一章主要内容：官方的实例如何在本地运行起来"></a>下一章主要内容：官方的实例如何在本地运行起来</h4>
       
     </div>
     
@@ -962,7 +1084,7 @@ ga('send', 'pageview');
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/weex/">weex</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
 	</div>
 
       
@@ -1055,10 +1177,10 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-wechat-1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-weex" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/11/23/wechat-1/" class="article-date">
+      <a href="/2016/11/23/weex/" class="article-date">
   	<time datetime="2016-11-23T14:23:09.000Z" itemprop="datePublished">2016-11-23</time>
 </a>
     </div>
@@ -1072,7 +1194,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/23/wechat-1/">六不准的微信小程序开发指南一</a>
+      <a class="article-title" href="/2016/11/23/weex/">weex开发踩过的坑</a>
     </h1>
   
 
@@ -1081,30 +1203,11 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="本章主要讲微信小程序开发前的准备工作"><a href="#本章主要讲微信小程序开发前的准备工作" class="headerlink" title="本章主要讲微信小程序开发前的准备工作"></a>本章主要讲微信小程序开发前的准备工作</h3><h4 id="微信小程序官方链接"><a href="#微信小程序官方链接" class="headerlink" title="微信小程序官方链接"></a>微信小程序官方链接</h4><ul>
-<li><p>网上找了好多资源，包括微信公众平台官网，很难发现微信小程序的官方文档，估计是还没有大规模推广有关。找现在终于将官方的文档地址找到，提供出来，一睹庐山真面目。</p>
-</li>
-<li><p><a href="https://mp.weixin.qq.com" target="_blank" rel="external">微信公众平台</a>：<a href="https://mp.weixin.qq.com" target="_blank" rel="external">https://mp.weixin.qq.com</a></p>
-</li>
-<li><p>公众平台小程序<a href="https://mp.weixin.qq.com/wxopen/waregister?action=step1" target="_blank" rel="external">注册地址</a>：<a href="https://mp.weixin.qq.com/wxopen/waregister?action=step1" target="_blank" rel="external">https://mp.weixin.qq.com/wxopen/waregister?action=step1</a></p>
-<ul>
-<li>现阶段用户信息登记仅开发给企业和组织，所以你想跑一个完整的小程序，建议还是已一个存在的企业身份进行注册。如果做为开发者，仅想了解微信小程序的开发方式以及API，可以直接下载开发者工具体验。</li>
+        <h3 id="weex-is-not-defined"><a href="#weex-is-not-defined" class="headerlink" title="weex is not defined"></a>weex is not defined</h3><ul>
+<li>官方示例：”weex-vue-render”: “^0.11.2”,</li>
+<li>可运行版本：”weex-vue-render”: “^0.2.0”</li>
 </ul>
-</li>
-<li><p>微信小程序开发者工具<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=20161122" target="_blank" rel="external">下载地址</a>：<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=20161122" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=20161122</a></p>
-</li>
-</ul>
-<h4 id="详细的小程序产品以及功能介绍"><a href="#详细的小程序产品以及功能介绍" class="headerlink" title="详细的小程序产品以及功能介绍"></a>详细的小程序产品以及功能介绍</h4><ul>
-<li><p>只要注册成功以后进入到微信小程序网站，页面右上角有四个栏目，有非常详细的介绍，本文的多数链接也摘自于此，大家可以好好阅读，本文就不再赘述。</p>
-<ul>
-<li>注册，发布，设置相关：<a href="https://mp.weixin.qq.com/debug/wxadoc/introduction/index.html?t=20161122" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/introduction/index.html?t=20161122</a></li>
-<li>交互视觉相关：<a href="https://mp.weixin.qq.com/debug/wxadoc/design/index.html?t=20161107" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/design/index.html?t=20161107</a></li>
-<li>开发相关：<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/index.html?t=20161109" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/dev/index.html?t=20161109</a></li>
-<li>运营相关：<a href="https://mp.weixin.qq.com/debug/wxadoc/product/index.html?t=20161122" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/product/index.html?t=20161122</a></li>
-</ul>
-</li>
-</ul>
-<h4 id="下一章主要内容：官方的实例如何在本地运行起来"><a href="#下一章主要内容：官方的实例如何在本地运行起来" class="headerlink" title="下一章主要内容：官方的实例如何在本地运行起来"></a>下一章主要内容：官方的实例如何在本地运行起来</h4>
+<h4 id="下一章主要内容：模仿一个流行的应用做个实例"><a href="#下一章主要内容：模仿一个流行的应用做个实例" class="headerlink" title="下一章主要内容：模仿一个流行的应用做个实例"></a>下一章主要内容：模仿一个流行的应用做个实例</h4>
       
     </div>
     
@@ -1112,130 +1215,7 @@ ga('send', 'pageview');
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-lost-table" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/05/lost-table/" class="article-date">
-  	<time datetime="2016-06-05T05:47:29.000Z" itemprop="datePublished">2016-06-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/05/lost-table/">银行/金融/通信 网站挂失导航</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前言：用于记录个银行，金融，通信网站挂失或者冻结的常用链接</p>
-<table>
-<thead>
-<tr>
-<th>银行类</th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://mybank.icbc.com.cn/icbc/perbank/index.jsp" target="_blank" rel="external">工商银行-95588</a></td>
-<td><a href="https://ibsbjstar.ccb.com.cn/CCBIS/V6/STY1/CN/login.jsp" target="_blank" rel="external">建设银行-95533</a></td>
-<td><a href="https://pbank.95559.com.cn/personbank/logon.jsp" target="_blank" rel="external">中国银行-95559</a></td>
-<td><a href="https://ibsbjstar.ccb.com.cn/CCBIS/V6/STY1/CN/login.jsp" target="_blank" rel="external">交通银行-95533</a></td>
-</tr>
-<tr>
-<td><a href="http://www.abchina.com/cn/wydl/grwydl/" target="_blank" rel="external">农业银行-95599</a></td>
-<td><a href="https://pbsz.ebank.cmbchina.com/CmbBank_GenShell/UI/GenShellPC/Login/Login.aspx" target="_blank" rel="external">招商银行-95555</a></td>
-<td><a href="https://pbank.psbc.com/pweb/prelogin.do?_locale=zh_CN&amp;BankId=9999" target="_blank" rel="external">邮政储蓄银行-95580</a></td>
-<td><a href="https://www.cebbank.com/per/prePerlogin.do?_locale=zh_CN" target="_blank" rel="external">光大银行-95595</a></td>
-</tr>
-<tr>
-<td><a href="https://nper.cmbc.com.cn/pweb/static/login.html" target="_blank" rel="external">民生银行-95568</a></td>
-<td><a href="https://bank.pingan.com.cn/ibp/bank/index.html" target="_blank" rel="external">平安银行-95511转2</a></td>
-<td><a href="https://ebank.spdb.com.cn/nbper/prelogin.do" target="_blank" rel="external">浦发银行-95528</a></td>
-<td><a href="https://i.bank.ecitic.com/perbank6/signIn.do" target="_blank" rel="external">中信银行-95558</a></td>
-</tr>
-<tr>
-<td><a href="https://personalbank.cib.com.cn/pers/main/login.do" target="_blank" rel="external">兴业银行-95561</a></td>
-<td><a href="https://sbank.hxb.com.cn/easybanking/jsp/login/login.jsp" target="_blank" rel="external">华夏银行-95577</a></td>
-<td><a href="https://ebanks.cgbchina.com.cn/perbank/" target="_blank" rel="external">广发银行-95508</a></td>
-<td><a href="https://ebank.bankofbeijing.com.cn/bccbpb/accountLogon.jsp?language=zh_CN" target="_blank" rel="external">北京银行-95526</a></td>
-</tr>
-<tr>
-<td><a href="https://online.hsbank.cc/pweb/prelogin.do?LoginType=C&amp;_locale=zh_CN&amp;BankId=99999&amp;VerifyIdNo=&amp;VerifyIdType=" target="_blank" rel="external">徽商银行-95533</a></td>
-<td><a href="https://www.bankoftianjin.com/pweb/prelogin.do?LoginType=R&amp;_locale=zh_CN" target="_blank" rel="external">天津银行-4006-960296</a></td>
-<td><a href="https://ebanks.bankofshanghai.com/pweb/prelogin.do?LoginType=R&amp;_locale=zh_CN" target="_blank" rel="external">上海银行-95594</a></td>
-<td><a href="https://www.hkbchina.com/pcweb/login.html" target="_blank" rel="external">汉口银行-96558</a></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>电子支付</th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://www.alipay.com/" target="_blank" rel="external">支付宝-95188转1</a></td>
-<td><a href="https://www.baifubao.com/" target="_blank" rel="external">百度钱包-1010-0066</a></td>
-<td><a href="https://member.yeepay.com/member/login/index" target="_blank" rel="external">易宝支付-4001-500-800</a></td>
-<td><a href="https://passport.99bill.com/sso/login/authentication1.htm" target="_blank" rel="external">快钱-400-615-5799</a></td>
-</tr>
-<tr>
-<td><a href="https://www.cmpay.com/" target="_blank" rel="external">中国移动和包-10086</a></td>
-<td><a href="https://www.tenpay.com/" target="_blank" rel="external">财付通-0755-86013860</a></td>
-<td><a href="https://epay.163.com/i.htm" target="_blank" rel="external">网易支付-0571-26201166</a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/丢了/">丢了</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/weex/">weex</a></li></ul>
 	</div>
 
       
